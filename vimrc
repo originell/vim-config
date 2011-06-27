@@ -1,3 +1,8 @@
+""" originell vimrc
+"""
+""" If you are using MacVIM note that
+""" <leader> means \
+
 set nocompatible     " be iMproved
 filetype off         " required for Vundle
 
@@ -136,9 +141,9 @@ augroup Spacing
     autocmd FileType help,make match BadSpacing /  *$/
 augroup END
 
-" source vimrc with ,s
+" source vimrc with <leader>s
 map <Leader>s :source $MYVIMRC<cr>
-" open up .vimrc in a vertical split with ,v
+" open up .vimrc in a vertical split with <leader>v
 map <Leader>vv <c-w><c-v>:e $MYVIMRC<cr>
 
 
@@ -151,4 +156,9 @@ set backup
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
 
-
+""" vim7.3+ has colorcolumn support - otherwise fake it
+"""              ^-  highlight linelenghts exceeding XX
+if exists('+colorcolumn')
+    set colorcolumn=79
+else
+    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%79v.\+', -1)
