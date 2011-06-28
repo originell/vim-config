@@ -14,5 +14,5 @@ perfectly honest, sucks. The most common and obvious way is to compile vim
 yourself. However that did throw me errors with ruby not having a x86_64 
 extensions even when I had the x86_64 version installed via `rvm`. Anyways
 I then found an article by Chris Moyer about [using MacVIM´s vim 
-as _cli_ vim](ihttp://blog.coredumped.org/2010/01/osx-vim-and-python.html).
+as _cli_ vim](http://blog.coredumped.org/2010/01/osx-vim-and-python.html).
 Saved my day!
