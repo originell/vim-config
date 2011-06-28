@@ -6,6 +6,17 @@ what is different and where my inspirations come from.
 
 Hopefully I will stay strong :-)
 
+CommandT
+========
+
+This 'vimrc' contains the famous CommandT utility, mimicking TextMate's `Go To File` functionality. In order to use it you need to compile the included C extension...
+
+    cd bundle/command-t/ruby/command-t/
+    ruby extconf.rb
+    make
+
+That's it :-)
+
 vim on OSX Note
 ===============
 
