@@ -163,3 +163,10 @@ if exists('+colorcolumn')
 else
     au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%79v.\+', -1)
 endif
+
+""" Color Scheme
+set background=dark
+colorscheme zenburn
+
+""" GUI Options (MacVim/gVim)
+set guifont=Inconsolata:h14.00
