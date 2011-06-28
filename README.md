@@ -15,4 +15,12 @@ yourself. However that did throw me errors with ruby not having a x86_64
 extensions even when I had the x86_64 version installed via `rvm`. Anyways
 I then found an article by Chris Moyer about [using MacVIM´s vim 
 as _cli_ vim](http://blog.coredumped.org/2010/01/osx-vim-and-python.html).
-Saved my day!
+
+If you are one of the lucky gals who  are using
+[homebrew](https://github.com/mxcl/homebrew) you can just do a simple
+
+    brew install MacVim
+
+which takes care of everything mentioned in the above blogpost. You can even
+go so far as to use `--override-system-vim`. _Awesome_!
+
