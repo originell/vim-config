@@ -17,6 +17,15 @@ This 'vimrc' contains the famous CommandT utility, mimicking TextMate's `Go To F
 
 That's it :-)
 
+pyflakes
+========
+
+Tells you about unused imports, missing colons when working with Python. The VIM script is already in the config, however, of course, requires the `pyflakes` library.
+Personally I recommend using [kevinw's pyflakes fork](https://github.com/kevinw/pyflakes), since it is faster and retains column number information (more specific error locations).
+
+    pip install git+https://github.com/kevinw/pyflakes
+
+
 vim on OSX Note
 ===============
 

@@ -64,6 +64,7 @@ Bundle 'reinh/vim-makegreen'
 Bundle 'vim-scripts/pep8'
 Bundle 'vim-scripts/TaskList.vim'
 Bundle 'othree/html5.vim'
+Bundle 'kevinw/pyflakes-vim'
 " original git repos
 "
 " To properly install "command-t" don't forget to compile the C-extension
