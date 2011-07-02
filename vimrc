@@ -65,6 +65,7 @@ Bundle 'vim-scripts/pep8'
 Bundle 'vim-scripts/TaskList.vim'
 Bundle 'othree/html5.vim'
 Bundle 'kevinw/pyflakes-vim'
+Bundle 'robhudson/snipmate_for_django'
 " original git repos
 "
 " To properly install "command-t" don't forget to compile the C-extension
@@ -192,3 +193,10 @@ au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 au FileType html set omnifunc=htmlcomplete#CompleteTags
 au FileType css set omnifunc=csscomplete#CompleteCSS
 au FileType python set omnifunc=pythoncomplete#Complete
+
+" robhudson's django snipmate bundle includes lots of
+" snippets. If you are not working a lot with django
+" and django/jinja templates, comment the following
+" lines
+au FileType python set ft=python.django
+au FileType html set ft=htmldjango.html
