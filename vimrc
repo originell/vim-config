@@ -40,10 +40,15 @@ Bundle 'gmarik/vundle'
 
 " My Bundles:
 "
-" repos on github
-Bundle 'tpope/vim-fugitive' " GIT integration
+" Repos on GitHub
+" ===============
+"
+" GIT integration
+Bundle 'tpope/vim-fugitive'
+" Deal with pairs of surroundings
 Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-git'     " GIT syntax 
+" GIT Syntax
+Bundle 'tpope/vim-git'
 Bundle 'msanders/snipmate.vim'
 Bundle 'ervandew/supertab'
 Bundle 'sontek/minibufexpl.vim'
