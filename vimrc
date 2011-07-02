@@ -10,6 +10,7 @@ set foldmethod=indent
 set foldlevel=99
 
 " Use ctrl+movement keys instead of ctrl+w 
+" to move between buffers
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
@@ -40,9 +41,9 @@ Bundle 'gmarik/vundle'
 " My Bundles:
 "
 " repos on github
-Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-fugitive' " GIT integration
 Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-git'
+Bundle 'tpope/vim-git'     " GIT syntax 
 Bundle 'msanders/snipmate.vim'
 Bundle 'ervandew/supertab'
 Bundle 'sontek/minibufexpl.vim'
@@ -57,9 +58,10 @@ Bundle 'alfredodeza/pytest.vim'
 Bundle 'reinh/vim-makegreen'
 Bundle 'vim-scripts/pep8'
 Bundle 'vim-scripts/TaskList.vim'
+Bundle 'othree/html5.vim'
 " original git repos
 "
-" To properly install "command-t" don't forget to compile the C-extension via
+" To properly install "command-t" don't forget to compile the C-extension
 "
 "   $ cd ~/.vim/bundle/command-t/ruby/command-t
 "   $ ruby extconf.h
@@ -82,9 +84,10 @@ let g:pyflakes_use_quickfix = 0
 " python pep8 violations in quickfix window
 let g:pep8_map='<leader>8'
 
-" Enable omni completion for with python
-au FileType python set omnifunc=pythoncomplete#Complete
+" SuperTab lets us use tab for autocompletion in
+" insert mode
 let g:SuperTabDefaultCompletionType = 'context'
+
 " pydoc preview :D
 " <leader>pw opens pydoc for current module
 set completeopt=menuone,longest,preview
@@ -96,11 +99,8 @@ map <leader>n :NERDTreeToggle<CR>
 map <leader>j :RopeGotoDefinition<CR>
 map <leader>r :RopeRename<CR>
 
-" ACK plugin :)
+" ACK plugin :) (grep but with lot more awesome)
 nmap <leader>a <Esc>:Ack!
-
-" git.vim is installed for git conf syntax highlight
-" fugitive gives us awesome git integration
 
 " configure MakeGreen to use django manage.py test
 map <leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
@@ -116,22 +116,33 @@ nmap <silent><Leader>tn <Esc>:Pytest next<CR>
 nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
 nmap <silent><Leader>te <Esc>:Pytest error<CR>
 
-syntax on
-set number           " hello linenumbers
+""" ====================
+""" General VIM Settings
+""" ====================
 
+" Syntax highlighting
+syntax on
+" linenumbers
+set number
+
+" 1 Tab == 4 Spaces
 set tabstop=4
-set smarttab
+" How many columns get inserted by reindent operations
 set shiftwidth=4
-set autoindent
+" Insert blanks according to tabstop && shiftwidth
+set smarttab
+" Tab in insert mode indents
 set expandtab
+" well, automatic C style indentation
+set autoindent
 
 " display tabs and spaces
-set listchars=tab:»·,trail:· " show trailing spaces as a circle. turn off with 'set nolist'
+set listchars=tab:»·,trail:· 
+" show trailing spaces as a circle. turn off with 'set nolist'
 set list
 
-""" ================================================
-""" Highlight inconsistencies mixing tabs and spaces
-""" ================================================
+" Highlight inconsistencies mixing tabs and spaces
+" -- thx indygemma
 highlight BadSpacing term=standout ctermbg=cyan
 augroup Spacing
     autocmd!
@@ -143,9 +154,8 @@ augroup END
 
 " source vimrc with <leader>s
 map <Leader>s :source $MYVIMRC<cr>
-" open up .vimrc in a vertical split with <leader>v
+" open up .vimrc in a vertical split with <leader>vv
 map <Leader>vv <c-w><c-v>:e $MYVIMRC<cr>
-
 
 " set the backup dir to declutter working directory.
 " two ending slashes means, full path to the actual filename
@@ -156,17 +166,23 @@ set backup
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
 
-""" vim7.3+ has colorcolumn support - otherwise fake it
-"""              ^-  highlight linelenghts exceeding XX
+" vim7.3+ has colorcolumn support - otherwise fake it
+"             ^-  highlight linelenghts exceeding XX
 if exists('+colorcolumn')
     set colorcolumn=79
 else
     au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%79v.\+', -1)
 endif
 
-""" Color Scheme
+" Color Scheme
 set background=dark
 colorscheme zenburn
 
-""" GUI Options (MacVim/gVim)
+" GUI Options (MacVim/gVim)
 set guifont=Inconsolata:h14.00
+
+" Omni Completion
+au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+au FileType html set omnifunc=htmlcomplete#CompleteTags
+au FileType css set omnifunc=csscomplete#CompleteCSS
+au FileType python set omnifunc=pythoncomplete#Complete
