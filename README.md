@@ -3,6 +3,8 @@ My VIM Adventure
 
 This README contains information which I did not want to put into my VIMrc. Mainly notes on usage and installation. For everything else, go ahead and undress my `VIMrc` ;-)
 
+I'm doing mainly webdevelopment with Django. Therefore Python is my favourite weapon of choice, so this config is really all about easing Python development (for now).
+
 CommandT
 ========
 
@@ -20,6 +22,15 @@ About make fails and VIM segfaults
 If CommandT makes your VIM segfault, this is most likely to happen because your VIM is compiled against a different Ruby version than CommandT. I recommend using [`rvm`](https://rvm.beginrescueend.com/) (Ruby Version Manager) to install/switch to the version your VIM is compiled against and recompile CommandT.
 
 Same applies for `make` failures.
+
+pep8
+====
+
+My config also has `pep8` support. In order to take advantage of it you have to install the pep8 script from the python package index.
+
+    pip install pep8
+
+After that, just press `<leader>8` and you will get a nice window with all your pep8 violations
 
 pyflakes
 ========
