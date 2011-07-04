@@ -183,7 +183,11 @@ endif
 
 " Color Scheme
 set background=dark
-colorscheme zenburn
+if has("gui_running")
+    colorscheme zenburn
+else
+    colorscheme desert
+endif
 
 " GUI Options (MacVim/gVim)
 set guifont=Inconsolata:h14.00
