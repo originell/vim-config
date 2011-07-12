@@ -101,6 +101,8 @@ set completeopt=menuone,longest,preview
 
 " NERD tree
 map <leader>n :NERDTreeToggle<CR>
+"" ignnore .pyc files
+let NERDTreeIgnore = ['\.pyc$']
 
 " Python Rope
 map <leader>j :RopeGotoDefinition<CR>
