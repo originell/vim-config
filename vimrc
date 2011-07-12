@@ -206,3 +206,7 @@ au FileType python set omnifunc=pythoncomplete#Complete
 " lines
 au FileType python set ft=python.django
 au FileType html set ft=htmldjango.html
+
+" Use jj instead of ESC since it's pretty much
+" of a stretch with the hand.
+imap jj <Esc>
