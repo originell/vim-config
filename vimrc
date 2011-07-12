@@ -44,14 +44,14 @@ Bundle 'gmarik/vundle'
 " ===============
 "
 " GIT integration
-Bundle 'tpope/vim-fugitive'
+"Bundle 'tpope/vim-fugitive'
 " Deal with pairs of surroundings
 Bundle 'tpope/vim-surround'
 " GIT Syntax
 Bundle 'tpope/vim-git'
 Bundle 'msanders/snipmate.vim'
 Bundle 'ervandew/supertab'
-Bundle 'jmnas/minibufexpl.vim'
+"Bundle 'fholgado/minibufexpl.vim'
 Bundle 'sontek/rope-vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
@@ -64,7 +64,7 @@ Bundle 'reinh/vim-makegreen'
 Bundle 'vim-scripts/pep8'
 Bundle 'vim-scripts/TaskList.vim'
 Bundle 'othree/html5.vim'
-Bundle 'kevinw/pyflakes-vim'
+"Bundle 'kevinw/pyflakes-vim'
 Bundle 'robhudson/snipmate_for_django'
 " original git repos
 "
