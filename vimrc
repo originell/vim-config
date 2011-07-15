@@ -81,7 +81,8 @@ filetype plugin indent on     " required for Vundle
 
 " TaskList default mapping is <leader>t, which basically always
 " conflicts with other plugins.
-map <leader>td <Plug>TaskList
+" furthermore it would slow down the opening of CommandT
+nmap <leader>do <Plug>TaskList
 
 map <leader>g :GundoToggle<CR>
 
@@ -114,16 +115,21 @@ nmap <leader>a <Esc>:Ack!
 " configure MakeGreen to use django manage.py test
 map <leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
 
+" === Disabled ===
+" I don't need it right now and it 
+" slows down start of CommandT
+" so I'd need to remap it.. Feel free to do that ;-)
+" ================
 " py.test for more functionality for tests (individual files, classes,
 " methods)
 "" Execute the tests
-nmap <silent><Leader>tf <Esc>:Pytest file<CR>
-nmap <silent><Leader>tc <Esc>:Pytest class<CR>
-nmap <silent><Leader>tm <Esc>:Pytest method<CR>
+"nmap <silent><Leader>tf <Esc>:Pytest file<CR>
+"nmap <silent><Leader>tc <Esc>:Pytest class<CR>
+"nmap <silent><Leader>tm <Esc>:Pytest method<CR>
 "" cycle through test errors
-nmap <silent><Leader>tn <Esc>:Pytest next<CR>
-nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
-nmap <silent><Leader>te <Esc>:Pytest error<CR>
+"nmap <silent><Leader>tn <Esc>:Pytest next<CR>
+"nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
+"nmap <silent><Leader>te <Esc>:Pytest error<CR>
 
 """ ====================
 """ General VIM Settings
