@@ -139,6 +139,8 @@ map <leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
 syntax on
 " linenumbers
 set number
+" on search, highlight findings
+set hlsearch
 
 " 1 Tab == 4 Spaces
 set tabstop=4
