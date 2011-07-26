@@ -141,6 +141,8 @@ syntax on
 set number
 " on search, highlight findings
 set hlsearch
+" Disable the (visual) bell
+set vb t_vb=
 
 " 1 Tab == 4 Spaces
 set tabstop=4
