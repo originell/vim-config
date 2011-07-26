@@ -139,10 +139,16 @@ map <leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
 syntax on
 " linenumbers
 set number
+" set incremental search (search while typing)
+set incsearch
 " on search, highlight findings
 set hlsearch
 " Disable the (visual) bell
 set vb t_vb=
+" Always display those nice little infos
+" bottom right.
+set ruler
+
 
 " 1 Tab == 4 Spaces
 set tabstop=4
