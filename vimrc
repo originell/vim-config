@@ -244,6 +244,9 @@ else
     colorscheme desert
 endif
 
+" Highlight the current line
+set cursorline
+
 " GUI Options (MacVim/gVim)
 set guifont=Inconsolata:h14.00
 
