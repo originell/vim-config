@@ -240,6 +240,8 @@ endif
 set background=dark
 if has("gui_running")
     colorscheme zenburn
+    " Remove toolbar
+    set guioptions-=T
 else
     colorscheme desert
 endif
