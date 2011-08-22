@@ -257,6 +257,7 @@ au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 au FileType html set omnifunc=htmlcomplete#CompleteTags
 au FileType css set omnifunc=csscomplete#CompleteCSS
 au FileType python set omnifunc=pythoncomplete#Complete
+au FileType php set omnifunc=phpcomplete#CompletePHP
 
 " robhudson's django snipmate bundle includes lots of
 " snippets. If you are not working a lot with django
@@ -268,3 +269,7 @@ au FileType html set ft=htmldjango.html
 " Use jj instead of ESC since it's pretty much
 " of a stretch with the hand.
 imap jj <Esc>
+
+" PHP Stuff
+let php_sql_query=1
+let php_htmlInStrings=1
