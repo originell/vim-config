@@ -252,6 +252,13 @@ set cursorline
 " GUI Options (MacVim/gVim)
 set guifont=Inconsolata:h14.00
 
+" When doing :e and pressing TAB
+" this will list the contents of
+" the current directory.
+" See http://vim.wikia.com/wiki/Great_wildmode/wildmenu_and_console_mouse
+set wildmenu
+set wildmode=list:longest,full
+
 " Omni Completion
 au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 au FileType html set omnifunc=htmlcomplete#CompleteTags
