@@ -259,6 +259,9 @@ set guifont=Inconsolata:h14.00
 set wildmenu
 set wildmode=list:longest,full
 
+" Enable mouse support for console vim
+set mouse=a
+
 " Omni Completion
 au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 au FileType html set omnifunc=htmlcomplete#CompleteTags
