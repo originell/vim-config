@@ -6,7 +6,7 @@
 set nocompatible     " be iMproved
 filetype off         " required for Vundle
 
-set foldmethod=indent
+set foldmethod=marker
 set foldlevel=99
 
 " Use ctrl+movement keys instead of ctrl+w 
@@ -44,7 +44,7 @@ Bundle 'gmarik/vundle'
 " ===============
 "
 " GIT integration
-"Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-fugitive'
 " Deal with pairs of surroundings
 Bundle 'tpope/vim-surround'
 " GIT Syntax
@@ -187,9 +187,13 @@ map <Leader>vv <c-w><c-v>:e $MYVIMRC<cr>
 " -- thanks to indygemma
 silent! !mkdir -p ~/.vim/backup
 silent! !mkdir -p ~/.vim/swap
+silent! !mkdir -p ~/.vim/undo
 set backup
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
+" Persistent undos (vim 7.3+)
+set undofile
+set undodir=~/.vim/undo//
 
 " Thanks to John Resig for the following 2 things:
 "
@@ -275,6 +279,17 @@ au FileType php set omnifunc=phpcomplete#CompletePHP
 " lines
 au FileType python set ft=python.django
 au FileType html set ft=htmldjango.html
+
+" Use indent as foldmethod in python.
+" THX to
+" http://stackoverflow.com/questions/357785/what-is-the-recommended-way-to-use-vim-folding-for-python-coding
+au FileType python set foldmethod=indent
+" Do not fold internal statements.
+au FileType python set foldnestmax=2
+
+" Fold/Unfold with Shift+Space
+nnoremap <s-space> za
+vnoremap <s-space> zf
 
 " Use jj instead of ESC since it's pretty much
 " of a stretch with the hand.
