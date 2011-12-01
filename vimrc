@@ -241,13 +241,14 @@ else
 endif
 
 " Color Scheme
+" Enable 256 Color support in VIM, so we can use
+" zenburn also in console.
+set t_Co=256
 set background=dark
+colorscheme zenburn
 if has("gui_running")
-    colorscheme zenburn
     " Remove toolbar
     set guioptions-=T
-else
-    colorscheme desert
 endif
 
 " Highlight the current line
