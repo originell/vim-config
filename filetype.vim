@@ -5,5 +5,6 @@ endif
 
 augroup filetypedetect
     au! BufNewFile,BufRead *.applescript   setf applescript
+    au! BufNewFile,BufRead syslog*         setf syslog
 augroup END
 
