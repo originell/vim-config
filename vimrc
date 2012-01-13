@@ -35,7 +35,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 
 " My Bundles:
@@ -51,6 +51,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-git'
 Bundle 'msanders/snipmate.vim'
 Bundle 'ervandew/supertab'
+" I don't use this anymore. When you are used to vim's buffers it feels wrong.
 "Bundle 'fholgado/minibufexpl.vim'
 Bundle 'sontek/rope-vim'
 "Bundle 'scrooloose/syntastic'
@@ -62,11 +63,12 @@ Bundle 'fs111/pydoc.vim'
 "Bundle 'alfredodeza/pytest.vim'
 "Bundle 'reinh/vim-makegreen'
 Bundle 'vim-scripts/pep8'
-"Bundle 'vim-scripts/TaskList.vim'
 Bundle 'vim-scripts/syslog-syntax-file'
 Bundle 'othree/html5.vim'
 "Bundle 'kevinw/pyflakes-vim'
 Bundle 'robhudson/snipmate_for_django'
+" Colorise the status line! This is awesome. Thanks indygemma!
+Bundle 'Lokaltog/vim-powerline'
 " original git repos
 "
 " To properly install "command-t" don't forget to compile the C-extension
@@ -78,12 +80,7 @@ Bundle 'robhudson/snipmate_for_django'
 Bundle 'git://git.wincent.com/command-t.git'
 
 
-filetype plugin indent on     " required for Vundle 
-
-" TaskList default mapping is <leader>t, which basically always
-" conflicts with other plugins.
-" furthermore it would slow down the opening of CommandT
-nmap <leader>do <Plug>TaskList
+filetype plugin indent on     " required for Vundle
 
 map <leader>g :GundoToggle<CR>
 
@@ -146,6 +143,8 @@ set incsearch
 set hlsearch
 " Disable the (visual) bell
 set vb t_vb=
+" Always show the status line
+set laststatus=2
 " Always display those nice little infos
 " bottom right.
 set ruler
@@ -198,7 +197,7 @@ set undodir=~/.vim/undo//
 
 " Thanks to John Resig for the following 2 things:
 "
-" Tell vime to remember certain things when we exit
+" Tell vim to remember certain things when we exit
 "   '10 : marks will be remembered for up to 10 previously edited files
 "   "100 : will save up to 100 lines for each register
 "   :20 : up to 20 lines of command-line history will be remembered
