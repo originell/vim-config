@@ -4,7 +4,7 @@ if exists("did_load_filetypes")
 endif
 
 augroup filetypedetect
-    au! BufNewFile,BufRead *.applescript   setf applescript
-    au! BufNewFile,BufRead syslog*         setf syslog
+    au! BufNewFile,BufRead *.applescript            setf applescript
+    au! BufNewFile,BufRead syslog*                  setf syslog
+    au! BufNewFile,BufRead *Sites/sae/*html         setf php
 augroup END
-
