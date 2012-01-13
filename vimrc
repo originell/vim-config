@@ -94,6 +94,10 @@ let g:pep8_map='<leader>8'
 " insert mode
 let g:SuperTabDefaultCompletionType = 'context'
 
+" Powerline Fancy Font :)
+" You should really try this! See the Powerline readme.
+let g:Powerline_symbols = 'fancy'
+
 " pydoc preview :D
 " <leader>pw opens pydoc for current module
 set completeopt=menuone,longest,preview
