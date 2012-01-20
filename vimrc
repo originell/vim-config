@@ -65,7 +65,7 @@ Bundle 'fs111/pydoc.vim'
 Bundle 'vim-scripts/pep8'
 Bundle 'vim-scripts/syslog-syntax-file'
 Bundle 'othree/html5.vim'
-"Bundle 'kevinw/pyflakes-vim'
+Bundle 'kevinw/pyflakes-vim'
 Bundle 'robhudson/snipmate_for_django'
 " Colorise the status line! This is awesome. Thanks indygemma!
 Bundle 'Lokaltog/vim-powerline'
@@ -85,7 +85,7 @@ filetype plugin indent on     " required for Vundle
 map <leader>g :GundoToggle<CR>
 
 " disable pyflakes quickfix window
-let g:pyflakes_use_quickfix = 0
+"let g:pyflakes_use_quickfix = 0
 
 " python pep8 violations in quickfix window
 let g:pep8_map='<leader>8'
