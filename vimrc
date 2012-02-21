@@ -39,25 +39,43 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " My Bundles:
+" ==========
 "
 " Repos on GitHub
-" ===============
+" ---------------
 "
-Bundle 'tpope/vim-fugitive'              " GIT integration
-Bundle 'tpope/vim-git'                   " GIT Syntax
-Bundle 'klen/python-mode'                " Python Mode <3
-Bundle 'msanders/snipmate.vim'           " TextMate Style Snippets
+" GIT integration
+Bundle 'tpope/vim-fugitive'
+" GIT Syntax
+Bundle 'tpope/vim-git'
+" Python Mode <3
+Bundle 'klen/python-mode'
+" TextMate Style Snippets
+Bundle 'msanders/snipmate.vim'
+" Put the Tab on steroids!
 Bundle 'ervandew/supertab'
-Bundle 'scrooloose/nerdtree'             " Filebrowser
-Bundle 'scrooloose/nerdcommenter'        " Comments for multiple langs
-Bundle 'mileszs/ack.vim'                 " Ack (awesome grep)
-Bundle 'vim-scripts/pep8'                " PEP8
-Bundle 'vim-scripts/syslog-syntax-file'  " *.log syntax
-Bundle 'othree/html5.vim'                " some HTML5 stuff :)
-Bundle 'robhudson/snipmate_for_django'   " Django snippets
+" Filebrowser
+Bundle 'scrooloose/nerdtree'
+" Comments for multiple langs
+Bundle 'scrooloose/nerdcommenter'
+" Ack (awesome grep)
+Bundle 'mileszs/ack.vim'
+" some HTML5 stuff :)
+Bundle 'othree/html5.vim'
+" Django snippets
+Bundle 'robhudson/snipmate_for_django'
 " Beautify the status line! This is awesome. Thanks indygemma!
 Bundle 'Lokaltog/vim-powerline'
-" original git repos
+
+" Github vim-script/ repo
+" -----------------------
+" PEP8 -- all you python people know what I mean!
+Bundle 'pep8'
+" *.log syntax
+Bundle 'syslog-syntax-file'
+
+" Original git repos
+" ------------------
 "
 " To properly install "command-t" don't forget to compile the C-extension
 "
