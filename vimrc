@@ -43,31 +43,19 @@ Bundle 'gmarik/vundle'
 " Repos on GitHub
 " ===============
 "
-" GIT integration
-Bundle 'tpope/vim-fugitive'
-" Deal with pairs of surroundings
-"Bundle 'tpope/vim-surround'
-" GIT Syntax
-Bundle 'tpope/vim-git'
-Bundle 'msanders/snipmate.vim'
+Bundle 'tpope/vim-fugitive'              " GIT integration
+Bundle 'tpope/vim-git'                   " GIT Syntax
+Bundle 'klen/python-mode'                " Python Mode <3
+Bundle 'msanders/snipmate.vim'           " TextMate Style Snippets
 Bundle 'ervandew/supertab'
-" I don't use this anymore. When you are used to vim's buffers it feels wrong.
-"Bundle 'fholgado/minibufexpl.vim'
-Bundle 'sontek/rope-vim'
-"Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'mileszs/ack.vim'
-"Bundle 'sjl/gundo.vim'
-Bundle 'fs111/pydoc.vim'
-"Bundle 'alfredodeza/pytest.vim'
-"Bundle 'reinh/vim-makegreen'
-Bundle 'vim-scripts/pep8'
-Bundle 'vim-scripts/syslog-syntax-file'
-Bundle 'othree/html5.vim'
-Bundle 'kevinw/pyflakes-vim'
-Bundle 'robhudson/snipmate_for_django'
-" Colorise the status line! This is awesome. Thanks indygemma!
+Bundle 'scrooloose/nerdtree'             " Filebrowser
+Bundle 'scrooloose/nerdcommenter'        " Comments for multiple langs
+Bundle 'mileszs/ack.vim'                 " Ack (awesome grep)
+Bundle 'vim-scripts/pep8'                " PEP8
+Bundle 'vim-scripts/syslog-syntax-file'  " *.log syntax
+Bundle 'othree/html5.vim'                " some HTML5 stuff :)
+Bundle 'robhudson/snipmate_for_django'   " Django snippets
+" Beautify the status line! This is awesome. Thanks indygemma!
 Bundle 'Lokaltog/vim-powerline'
 " original git repos
 "
@@ -237,7 +225,7 @@ augroup END
 
 
 " vim7.3+ has colorcolumn support - otherwise fake it
-"             ^-  highlight linelenghts exceeding XX
+"             ^-  highlight linelengths exceeding XX
 if exists('+colorcolumn')
     set colorcolumn=79
 else
@@ -296,10 +284,9 @@ au FileType python set foldnestmax=2
 nnoremap <s-space> za
 vnoremap <s-space> zf
 
-" Use jj instead of ESC since it's pretty much
-" of a stretch with the hand.
-imap jj <Esc>
-
 " PHP Stuff
-let php_sql_query=1
-let php_htmlInStrings=1
+let php_sql_query=1      " Highlight SQL in strings
+let php_htmlInStrings=1  " Highlight HTML in strings
+
+" A search command displaying the results in a quickfix window
+command GREP :execute 'vimgrep '.expand('<cword>').' '.expand('%') | :copen | :cc
