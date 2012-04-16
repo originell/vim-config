@@ -66,6 +66,8 @@ Bundle 'othree/html5.vim'
 Bundle 'robhudson/snipmate_for_django'
 " Beautify the status line! This is awesome. Thanks indygemma!
 Bundle 'Lokaltog/vim-powerline'
+" A scratch buffer
+Bundle 'k-f-/vim-scratch'
 
 " Github vim-script/ repo
 " -----------------------
@@ -306,5 +308,11 @@ vnoremap <s-space> zf
 let php_sql_query=1      " Highlight SQL in strings
 let php_htmlInStrings=1  " Highlight HTML in strings
 
-" A search command displaying the results in a quickfix window
-command GREP :execute 'vimgrep '.expand('<cword>').' '.expand('%') | :copen | :cc
+" Python Mode Settings
+" ====================
+let g:pymode_lint_checker = "pyflakes"
+let g:pymode_run = 0
+let g:pymode_lint_write = 1
+let g:pymode_lint_onfly = 0
+let g:pymode_breakpoint = 0
+let g:pymode_lint_cwindow = 0
