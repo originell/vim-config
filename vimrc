@@ -293,6 +293,9 @@ au FileType php set omnifunc=phpcomplete#CompletePHP
 au FileType python set ft=python.django
 au FileType html set ft=htmldjango.html
 
+" JSON highlight
+autocmd BufNewFile,BufRead *.json set ft=javascript
+
 " Use indent as foldmethod in python.
 " THX to
 " http://stackoverflow.com/questions/357785/what-is-the-recommended-way-to-use-vim-folding-for-python-coding
