@@ -11,7 +11,7 @@ CommandT
 This `VIMrc` contains the famous CommandT utility, mimicking TextMate's `Go To File` functionality. In order to use it you need to compile the included C extension...
 
     cd bundle/command-t/Ruby/command-t/
-    Ruby extconf.rb
+    ruby extconf.rb
     make
 
 That's it :-)
@@ -23,23 +23,10 @@ If CommandT makes your VIM segfault, this is most likely to happen because your 
 
 Same applies for `make` failures.
 
-pep8
-====
+python-mode
+===========
 
-My config also has `pep8` support. In order to take advantage of it you have to install the pep8 script from the python package index.
-
-    pip install pep8
-
-After that, just press `<leader>8` and you will get a nice window with all your pep8 violations
-
-pyflakes
-========
-
-Tells you about unused imports, missing colons when working with Python. The VIM script is already in the config, and requires the `pyflakes` library.
-Personally I recommend using [kevinw's pyflakes fork](https://github.com/kevinw/pyflakes), since it is faster and retains column number information (more specific error locations).
-
-    pip install git+https://github.com/kevinw/pyflakes
-
+This config uses klen's awesome [python-mode](https://github.com/klen/python-mode).
 
 VIM on OSX Note
 ===============
