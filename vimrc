@@ -313,9 +313,23 @@ let php_htmlInStrings=1  " Highlight HTML in strings
 
 " Python Mode Settings
 " ====================
-let g:pymode_lint_checker = "pyflakes"
-let g:pymode_run = 0
-let g:pymode_lint_write = 1
-let g:pymode_lint_onfly = 0
-let g:pymode_breakpoint = 0
-let g:pymode_lint_cwindow = 0
+let g:pymode_run = 0          " Dont load the python run code within vim plugin
+let g:pymode_lint_write = 1   " enable code checking on every save
+let g:pymode_lint_onfly = 0   " dont run code checking on the fly
+let g:pymode_breakpoint = 0   " disable the breakpoint plugin (I have an ipdb
+                              " snippet for that)
+let g:pymode_lint_cwindow = 0 " dont autoopen the quickfix window on errors
+let g:pymode_lint_hold = 1    " hold the cursor in the window instead of
+                              "jumping to quickfix
+
+" CommandT Options
+" ===============
+let g:CommandTMaxHeight = 15          " Maximum window height.
+let g:CommandTMatchWindowReverse = 1  " Show the top match at the bottom
+                                      " instead of top.
+                                      " I think this is better cause its always
+                                      " at a fixed position instead of jumping
+                                      " around.
+
+" CommandT respects vim's wildignore setting.
+set wildignore+=*.o,*.obj,.git,*.pyc
