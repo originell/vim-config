@@ -75,6 +75,8 @@ Bundle 'k-f-/vim-scratch'
 Bundle 'pep8'
 " *.log syntax
 Bundle 'syslog-syntax-file'
+" Clojure :)
+Bundle 'VimClojure'
 
 " Original git repos
 " ------------------
@@ -333,3 +335,7 @@ let g:CommandTMatchWindowReverse = 1  " Show the top match at the bottom
 
 " CommandT respects vim's wildignore setting.
 set wildignore+=*.o,*.obj,.git,*.pyc
+
+" Clojure  (via VimClojure)
+let vimclojure#HighlightBuiltins=1   " Highlight Clojure's builtins
+let vimclojure#ParenRainbow=1        " Rainbows :)
