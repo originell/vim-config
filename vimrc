@@ -16,6 +16,11 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
+" Swap motion repeat forwards (;) and backwards (,)
+" I find it quicker to just press , in order to repeat my last movement
+" forwards and ; to do it backwards. It's rare that I move back. FUTURE!
+noremap ; ,
+noremap , ;
 
 " Vundle
 " Brief help
