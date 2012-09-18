@@ -298,6 +298,9 @@ au FileType html set ft=htmldjango.html
 " JSON highlight
 autocmd BufNewFile,BufRead *.json set ft=javascript
 
+" pip requirements.txt is OK to be highlighted as Python.
+autocmd BufNewFile,BufRead requirements.txt set ft=python
+
 " Use indent as foldmethod in python.
 " THX to
 " http://stackoverflow.com/questions/357785/what-is-the-recommended-way-to-use-vim-folding-for-python-coding
