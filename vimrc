@@ -331,6 +331,8 @@ let g:pymode_breakpoint = 0   " disable the breakpoint plugin (I have an ipdb
 let g:pymode_lint_cwindow = 0 " dont autoopen the quickfix window on errors
 let g:pymode_lint_hold = 1    " hold the cursor in the window instead of
                               "jumping to quickfix
+let g:pymode_lint_ignore = "E128"  " I have an indent style which is nice
+                                   " but linters dont like it usually.
 
 " CommandT Options
 " ===============
