@@ -73,6 +73,8 @@ Bundle 'robhudson/snipmate_for_django'
 Bundle 'Lokaltog/vim-powerline'
 " A scratch buffer
 Bundle 'k-f-/vim-scratch'
+" Python (and maybe other similar looking languages) Parameters Swapper
+Bundle 'mutewinter/swap-parameters'
 
 " Github vim-script/ repo
 " -----------------------
