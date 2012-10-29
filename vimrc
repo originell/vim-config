@@ -169,6 +169,8 @@ set laststatus=2
 " Always display those nice little infos
 " bottom right.
 set ruler
+" Allow changing buffers without saving
+set hidden
 
 
 " 1 Tab == 4 Spaces
