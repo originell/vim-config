@@ -56,7 +56,7 @@ Bundle 'tpope/vim-git'
 " Python Mode <3
 Bundle 'klen/python-mode'
 " TextMate Style Snippets
-Bundle 'msanders/snipmate.vim'
+Bundle 'garbas/vim-snipmate'
 " Put the Tab on steroids!
 Bundle 'ervandew/supertab'
 " Filebrowser
