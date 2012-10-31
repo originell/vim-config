@@ -72,8 +72,6 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'mileszs/ack.vim'
 " some HTML5 stuff :)
 Bundle 'othree/html5.vim'
-" Django snippets
-Bundle 'robhudson/snipmate_for_django'
 " Beautify the status line! This is awesome. Thanks indygemma!
 Bundle 'Lokaltog/vim-powerline'
 " A scratch buffer
