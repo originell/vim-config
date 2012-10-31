@@ -87,8 +87,6 @@ Bundle 'Townk/vim-autoclose'
 
 " Github vim-script/ repo
 " -----------------------
-" PEP8 -- all you python people know what I mean!
-Bundle 'pep8'
 " *.log syntax
 Bundle 'syslog-syntax-file'
 " Clojure :)
