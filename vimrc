@@ -80,6 +80,10 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'k-f-/vim-scratch'
 " Python (and maybe other similar looking languages) Parameters Swapper
 Bundle 'mutewinter/swap-parameters'
+" HaXe support
+Bundle 'jdonaldson/vaxe'
+" Autoclosing brackets/paranthesis/...
+Bundle 'Townk/vim-autoclose'
 
 " Github vim-script/ repo
 " -----------------------
