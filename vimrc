@@ -55,6 +55,8 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-git'
 " Python Mode <3
 Bundle 'klen/python-mode'
+" Python + Jedi => Autocomplete awesome
+Bundle 'davidhalter/jedi-vim'
 " TextMate Style Snippets
 "   Dependencies
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -340,8 +342,9 @@ let g:pymode_breakpoint = 0   " disable the breakpoint plugin (I have an ipdb
 let g:pymode_lint_cwindow = 0 " dont autoopen the quickfix window on errors
 let g:pymode_lint_hold = 1    " hold the cursor in the window instead of
                               "jumping to quickfix
-let g:pymode_lint_ignore = "E128"  " I have an indent style which is nice
-                                   " but linters dont like it usually.
+let g:pymode_lint_ignore = "E127,E128,E123,E124"  " I have an indent style that
+                                             " linters dont like it usually.
+let g:pymode_rope = 1  " We have JEDI now!
 
 " CommandT Options
 " ===============
