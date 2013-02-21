@@ -360,7 +360,7 @@ let g:CommandTMatchWindowReverse = 1  " Show the top match at the bottom
                                       " around.
 
 " CommandT respects vim's wildignore setting.
-set wildignore+=*.o,*.obj,.git,*.pyc
+set wildignore+=*.o,*.obj,.git,*.pyc,static/**
 
 " Clojure  (via VimClojure)
 let vimclojure#HighlightBuiltins=1   " Highlight Clojure's builtins
