@@ -22,6 +22,16 @@ map <c-h> <c-w>h
 noremap ; ,
 noremap , ;
 
+" Minimum window height 5 lines
+" current window always at min 30 lines
+set winheight=30
+set winminheight=5
+
+" Make buffer resizing more sensible - thanks to
+" http://www.readncode.com/blog/resizing-vim-window-splits-like-a-boss/
+nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
+
 " Vundle
 " Brief help
 "
