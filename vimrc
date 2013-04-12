@@ -361,9 +361,11 @@ let g:pymode_lint = 1         " Disable this lint. We'll use Syntastic.
 let g:pymode_lint_cwindow = 0 " dont autoopen the quickfix window on errors
 let g:pymode_lint_hold = 1    " hold the cursor in the window instead of
                               "jumping to quickfix
-let g:pymode_lint_ignore = "E127,E128,E123,E124"  " I have an indent style that
-                                             " linters dont like it usually.
-let g:pymode_rope = 1  " We have JEDI now!
+" I have an indent style that linters dont like it usually. (E123-E128)
+" Also I don't need the semicolon warning, since that only occurs when I set
+" an ipdb breakpoint. (E702)
+let g:pymode_lint_ignore = "E127,E128,E123,E124,E702"
+let g:pymode_rope = 1  " We have YCM now (which integrated Jedi)
 "
 " Jedi
 " ====
