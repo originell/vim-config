@@ -65,21 +65,14 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-git'
 " Python Mode <3
 Bundle 'klen/python-mode'
-" Python + Jedi => Autocomplete awesome
-Bundle 'davidhalter/jedi-vim'
 " TextMate Style Snippets
-"   Dependencies
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "honza/snipmate-snippets"
-"   The actual plugin.
-Bundle 'garbas/vim-snipmate'
-" Put the Tab on steroids!
-Bundle 'ervandew/supertab'
+Bundle 'SirVer/ultisnips'
 " Filebrowser
 Bundle 'scrooloose/nerdtree'
 " Comments for multiple langs
 Bundle 'scrooloose/nerdcommenter'
+" Syntastic! Syntax checking for all the languages ;-)
+Bundle 'scrooloose/syntastic'
 " Ack (awesome grep)
 Bundle 'mileszs/ack.vim'
 " some HTML5 stuff :)
@@ -93,7 +86,22 @@ Bundle 'mutewinter/swap-parameters'
 " HaXe support
 Bundle 'jdonaldson/vaxe'
 " Autoclosing brackets/paranthesis/...
-Bundle 'Townk/vim-autoclose'
+Bundle 'Raimondi/delimitMate'
+" Coffee Script
+Bundle 'kchmck/vim-coffee-script'
+" Jade Template Engine
+Bundle 'digitaltoad/vim-jade'
+" Scala
+Bundle 'derekwyatt/vim-scala'
+" Stylus CSS Support (incl. CSS3 stuff)
+Bundle 'wavded/vim-stylus'
+" EasyMotion
+Bundle 'Lokaltog/vim-easymotion'
+" Superfast auto complete
+" also contains Jedi for Python autocomplete etc.
+Bundle 'Valloric/YouCompleteMe'
+" Extremely awesome HTML tag highlight
+Bundle 'Valloric/MatchTagAlways'
 
 " Github vim-script/ repo
 " -----------------------
@@ -124,9 +132,6 @@ map <leader>g :GundoToggle<CR>
 " python pep8 violations in quickfix window
 let g:pep8_map='<leader>8'
 
-" SuperTab lets us use tab for autocompletion in
-" insert mode
-let g:SuperTabDefaultCompletionType = 'context'
 
 " Powerline Fancy Font :)
 " You should really try this! See the Powerline readme.
@@ -338,6 +343,9 @@ au FileType python set foldnestmax=2
 nnoremap <s-space> za
 vnoremap <s-space> zf
 
+" Use 2 spaces for indentation in CoffeeScript
+autocmd FileType coffee setlocal shiftwidth=2 tabstop=2
+
 " PHP Stuff
 let php_sql_query=1      " Highlight SQL in strings
 let php_htmlInStrings=1  " Highlight HTML in strings
@@ -349,6 +357,7 @@ let g:pymode_lint_write = 1   " enable code checking on every save
 let g:pymode_lint_onfly = 0   " dont run code checking on the fly
 let g:pymode_breakpoint = 0   " disable the breakpoint plugin (I have an ipdb
                               " snippet for that)
+let g:pymode_lint = 1         " Disable this lint. We'll use Syntastic.
 let g:pymode_lint_cwindow = 0 " dont autoopen the quickfix window on errors
 let g:pymode_lint_hold = 1    " hold the cursor in the window instead of
                               "jumping to quickfix
@@ -370,8 +379,11 @@ let g:CommandTMatchWindowReverse = 1  " Show the top match at the bottom
                                       " around.
 
 " CommandT respects vim's wildignore setting.
-set wildignore+=*.o,*.obj,.git,*.pyc,static/**
+set wildignore+=*.o,*.obj,.git,*.pyc,static/**,node_modules/**
 
 " Clojure  (via VimClojure)
 let vimclojure#HighlightBuiltins=1   " Highlight Clojure's builtins
 let vimclojure#ParenRainbow=1        " Rainbows :)
+
+" YouCompleteMe should not clash with UltiSnip's key mappings
+let g:ycm_key_list_select_completion = ['<Down>']
