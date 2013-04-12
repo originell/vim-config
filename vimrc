@@ -303,7 +303,8 @@ if has("gui_running")
     set guioptions-=L
     " Remove right scrollbar
     set guioptions-=r
-    set guifont=Inconsolata:h14.00
+    " Adobe's cool new hot Source Code Font
+    set guifont=Source\ Code\ Pro:h12
 endif
 
 " Highlight the current line
