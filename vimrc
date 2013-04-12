@@ -295,16 +295,19 @@ endif
 set t_Co=256
 set background=dark
 colorscheme zenburn
+
 if has("gui_running")
     " Remove toolbar
     set guioptions-=T
+    " Remove left scrollbar
+    set guioptions-=L
+    " Remove right scrollbar
+    set guioptions-=r
+    set guifont=Inconsolata:h14.00
 endif
 
 " Highlight the current line
 set cursorline
-
-" GUI Options (MacVim/gVim)
-set guifont=Inconsolata:h14.00
 
 " When doing :e and pressing TAB
 " this will list the contents of
