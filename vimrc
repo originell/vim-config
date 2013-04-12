@@ -102,6 +102,9 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Valloric/YouCompleteMe'
 " Extremely awesome HTML tag highlight
 Bundle 'Valloric/MatchTagAlways'
+" Support for the extremely awesome Dash OSX app
+Bundle 'rizzatti/funcoo.vim'  " dependency
+Bundle 'rizzatti/dash.vim'
 
 " Github vim-script/ repo
 " -----------------------
