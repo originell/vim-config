@@ -95,6 +95,8 @@ Bundle 'digitaltoad/vim-jade'
 Bundle 'derekwyatt/vim-scala'
 " Stylus CSS Support (incl. CSS3 stuff)
 Bundle 'wavded/vim-stylus'
+" SASS/SCSS
+Bundle 'tpope/vim-haml'
 " EasyMotion
 Bundle 'Lokaltog/vim-easymotion'
 " Superfast auto complete
@@ -244,6 +246,14 @@ set directory=~/.vim/swap//
 set undofile
 set undodir=~/.vim/undo//
 
+" Syntax coloring lines of long lines lags a lot.
+set synmaxcol=128
+" Fast terminal
+set ttyfast
+set ttyscroll=3
+" Avoid scrolling problems
+set lazyredraw
+
 " Thanks to John Resig for the following 2 things:
 "
 " Tell vim to remember certain things when we exit
@@ -310,6 +320,9 @@ endif
 " Highlight the current line
 set cursorline
 
+" Vertical fill character for stuff like splits etc.
+set fillchars=vert:│
+
 " When doing :e and pressing TAB
 " this will list the contents of
 " the current directory.
@@ -339,6 +352,9 @@ autocmd BufNewFile,BufRead *.json set ft=javascript
 
 " pip requirements.txt is OK to be highlighted as Python.
 autocmd BufNewFile,BufRead requirements.txt set ft=python
+
+" The Guardfile (awesome Guard project) is ruby
+autocmd BufNewFile,BufRead Guardfile set ft=ruby
 
 " Use indent as foldmethod in python.
 " THX to
