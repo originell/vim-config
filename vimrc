@@ -73,8 +73,8 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 " Syntastic! Syntax checking for all the languages ;-)
 Bundle 'scrooloose/syntastic'
-" Ack (awesome grep)
-Bundle 'mileszs/ack.vim'
+" Ag (faster Ack, awesome grep)
+Bundle 'rking/ag.vim'
 " some HTML5 stuff :)
 Bundle 'othree/html5.vim'
 " Beautify the status line! This is awesome. Thanks indygemma!
@@ -156,27 +156,12 @@ let NERDTreeIgnore = ['\.pyc$']
 map <leader>j :RopeGotoDefinition<CR>
 map <leader>r :RopeRename<CR>
 
-" ACK plugin :) (grep but with lot more awesome)
-nmap <leader>a <Esc>:Ack!
+" Ag plugin :) (faster Ack, so grep but with lot more awesome)
+nmap <leader>a <Esc>:Ag!
 
 " configure MakeGreen to use django manage.py test
 map <leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
 
-" === Disabled ===
-" I don't need it right now and it 
-" slows down start of CommandT
-" so I'd need to remap it.. Feel free to do that ;-)
-" ================
-" py.test for more functionality for tests (individual files, classes,
-" methods)
-"" Execute the tests
-"nmap <silent><Leader>tf <Esc>:Pytest file<CR>
-"nmap <silent><Leader>tc <Esc>:Pytest class<CR>
-"nmap <silent><Leader>tm <Esc>:Pytest method<CR>
-"" cycle through test errors
-"nmap <silent><Leader>tn <Esc>:Pytest next<CR>
-"nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
-"nmap <silent><Leader>te <Esc>:Pytest error<CR>
 
 """ ====================
 """ General VIM Settings
