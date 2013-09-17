@@ -143,7 +143,8 @@ Bundle 'git://git.wincent.com/command-t.git'
 
 filetype plugin indent on     " required for Vundle
 
-map <leader>g :GundoToggle<CR>
+" Load matchit for advanced opening/closing matches (HTML,...)
+runtime macros/matchit.vim
 
 " disable pyflakes quickfix window
 "let g:pyflakes_use_quickfix = 0
