@@ -74,7 +74,8 @@ Bundle 'SirVer/ultisnips'
 " Filebrowser
 Bundle 'scrooloose/nerdtree'
 " Comments for multiple langs
-Bundle 'scrooloose/nerdcommenter'
+Bundle 'tomtom/tcomment_vim'
+"Bundle 'scrooloose/nerdcommenter'
 " Syntastic! Syntax checking for all the languages ;-)
 Bundle 'scrooloose/syntastic'
 " Ag (faster Ack, awesome grep)
