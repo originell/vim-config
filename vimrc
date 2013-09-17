@@ -114,6 +114,12 @@ Bundle 'Valloric/MatchTagAlways'
 "  Dependencies for dash.vim
 Bundle 'rizzatti/funcoo.vim'
 Bundle 'rizzatti/dash.vim'
+" Markdown highlight
+Bundle 'plasticboy/vim-markdown'
+" Molokai (sublime text 2-like), for presentations
+Bundle 'tomasr/molokai'
+" Vim surround for quick wrapping
+Bundle 'tpope/vim-surround'
 
 " Github vim-script/ repo
 " -----------------------
