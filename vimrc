@@ -235,13 +235,6 @@ set directory=~/.vim/swap//
 set undofile
 set undodir=~/.vim/undo//
 
-" Syntax coloring lines of long lines lags a lot.
-set synmaxcol=128
-" Fast terminal
-set ttyfast
-set ttyscroll=3
-" Avoid scrolling problems
-set lazyredraw
 
 " Thanks to John Resig for the following 2 things:
 "
