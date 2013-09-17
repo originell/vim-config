@@ -432,3 +432,12 @@ let vimclojure#ParenRainbow=1        " Rainbows :)
 
 " YouCompleteMe should not clash with UltiSnip's key mappings
 let g:ycm_key_list_select_completion = ['<Down>']
+
+" MatchTagAlways include Django HTML Filetype
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'htmldjango.html' : 1,
+    \ 'jinja' : 1,
+    \}
