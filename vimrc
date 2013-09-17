@@ -91,6 +91,8 @@ Bundle 'jdonaldson/vaxe'
 Bundle 'Raimondi/delimitMate'
 " Coffee Script
 Bundle 'kchmck/vim-coffee-script'
+" LiveScript
+Bundle 'gkz/vim-ls'
 " Jade Template Engine
 Bundle 'digitaltoad/vim-jade'
 " Scala
@@ -372,8 +374,9 @@ au FileType python set foldnestmax=2
 nnoremap <s-space> za
 vnoremap <s-space> zf
 
-" Use 2 spaces for indentation in CoffeeScript
+" Use 2 spaces for indentation in CoffeeScript and LifeScript
 autocmd FileType coffee setlocal shiftwidth=2 tabstop=2
+autocmd FileType ls setlocal shiftwidth=2 tabstop=2
 
 " PHP Stuff
 let php_sql_query=1      " Highlight SQL in strings
