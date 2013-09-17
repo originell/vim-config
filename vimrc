@@ -48,6 +48,8 @@ nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
 " or wiki for FAQ
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+" Need to do this for powerline
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 " let Vundle manage Vundle
 " required!
@@ -78,9 +80,7 @@ Bundle 'rking/ag.vim'
 " some HTML5 stuff :)
 Bundle 'othree/html5.vim'
 " Beautify the status line! This is awesome. Thanks indygemma!
-Bundle 'Lokaltog/vim-powerline'
-" A scratch buffer
-Bundle 'k-f-/vim-scratch'
+Bundle 'Lokaltog/powerline'
 " Python (and maybe other similar looking languages) Parameters Swapper
 Bundle 'mutewinter/swap-parameters'
 " HaXe support
@@ -299,7 +299,25 @@ if has("gui_running")
     " Remove right scrollbar
     set guioptions-=r
     " Adobe's cool new hot Source Code Font
-    set guifont=Source\ Code\ Pro:h12
+    set guifont=Inconsolata-dz\ for\ Powerline:h12
+endif
+
+" Powerline: fix terminal timeout when pressing ESC
+if ! has('gui_running')
+    set ttimeoutlen=10
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+    augroup END
+    " Syntax coloring lines of long lines lags a lot.
+    set synmaxcol=128
+    " Fast terminal
+    set ttyfast
+    " Scroll 3 lines at a time
+    set ttyscroll=3
+    " Avoid scrolling problems
+    set lazyredraw
 endif
 
 " Highlight the current line
