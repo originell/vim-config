@@ -305,6 +305,8 @@ endif
 set t_Co=256
 set background=dark
 colorscheme zenburn
+" make molokai more sublime-like
+let g:molokai_original = 1
 
 if has("gui_running")
     " Remove toolbar
