@@ -179,10 +179,20 @@ set number
 set incsearch
 " on search, highlight findings
 set hlsearch
+" ignore case on search because...
+set ignorecase
+" ... we enable smartcase which goes case-sensitive when an uppercase letter
+" is found
+set smartcase
+" show extra info about the previous command
+set showcmd
 " Disable the (visual) bell
 set vb t_vb=
 " Always show the status line
 set laststatus=2
+" Hide the default mode text (e.g. -- INSERT -- below the
+" statusline)
+set noshowmode
 " Always display those nice little infos
 " bottom right.
 set ruler
