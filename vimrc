@@ -61,6 +61,8 @@ Bundle 'gmarik/vundle'
 " Repos on GitHub
 " ---------------
 "
+" .editorconfig support
+Bundle 'editorconfig/editorconfig-vim'
 " GIT integration
 Bundle 'tpope/vim-fugitive'
 " GIT Syntax
