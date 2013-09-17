@@ -106,10 +106,12 @@ Bundle 'Lokaltog/vim-easymotion'
 " Superfast auto complete
 " also contains Jedi for Python autocomplete etc.
 Bundle 'Valloric/YouCompleteMe'
+" JS autocomplete by TernJS via YCM
+Bundle 'marijnh/tern_for_vim'
 " Extremely awesome HTML tag highlight
 Bundle 'Valloric/MatchTagAlways'
 " Support for the extremely awesome Dash OSX app
-"  Dependency for dash.vim
+"  Dependencies for dash.vim
 Bundle 'rizzatti/funcoo.vim'
 Bundle 'rizzatti/dash.vim'
 
