@@ -91,12 +91,14 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'gkz/vim-ls'
 " Jade Template Engine
 Bundle 'digitaltoad/vim-jade'
-" Scala
-Bundle 'derekwyatt/vim-scala'
-" Stylus CSS Support (incl. CSS3 stuff)
-Bundle 'wavded/vim-stylus'
+" Awesome CSS Color Plugin
+Bundle 'skammer/vim-css-color'
+" CSS3 Support
+Bundle 'hail2u/vim-css3-syntax'
 " SASS/SCSS
 Bundle 'tpope/vim-haml'
+" LESS (css)
+Bundle 'groenewege/vim-less'
 " EasyMotion
 Bundle 'Lokaltog/vim-easymotion'
 " Superfast auto complete
