@@ -75,7 +75,6 @@ Bundle 'SirVer/ultisnips'
 Bundle 'scrooloose/nerdtree'
 " Comments for multiple langs
 Bundle 'tomtom/tcomment_vim'
-"Bundle 'scrooloose/nerdcommenter'
 " Syntastic! Syntax checking for all the languages ;-)
 Bundle 'scrooloose/syntastic'
 " Ag (faster Ack, awesome grep)
@@ -84,10 +83,6 @@ Bundle 'rking/ag.vim'
 Bundle 'othree/html5.vim'
 " Beautify the status line! This is awesome. Thanks indygemma!
 Bundle 'Lokaltog/powerline'
-" Python (and maybe other similar looking languages) Parameters Swapper
-Bundle 'mutewinter/swap-parameters'
-" HaXe support
-Bundle 'jdonaldson/vaxe'
 " Autoclosing brackets/paranthesis/...
 Bundle 'Raimondi/delimitMate'
 " Coffee Script
