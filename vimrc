@@ -108,16 +108,18 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'marijnh/tern_for_vim'
 " Extremely awesome HTML tag highlight
 Bundle 'Valloric/MatchTagAlways'
-" Support for the extremely awesome Dash OSX app
-"  Dependencies for dash.vim
-Bundle 'rizzatti/funcoo.vim'
-Bundle 'rizzatti/dash.vim'
 " Markdown highlight
 Bundle 'plasticboy/vim-markdown'
 " Molokai (sublime text 2-like), for presentations
 Bundle 'tomasr/molokai'
 " Vim surround for quick wrapping
 Bundle 'tpope/vim-surround'
+" Quick file open and buffer open
+Bundle 'kien/ctrlp.vim'
+" mustache and handlebars template support
+Bundle 'mustache/vim-mustache-handlebars'
+" Smarter JavaScript and HTML indentation
+Bundle 'Arkham/vim-web-indent'
 
 " Github vim-script/ repo
 " -----------------------
@@ -125,17 +127,6 @@ Bundle 'tpope/vim-surround'
 Bundle 'syslog-syntax-file'
 " Clojure :)
 Bundle 'VimClojure'
-
-" Original git repos
-" ------------------
-"
-" To properly install "command-t" don't forget to compile the C-extension
-"
-"   $ cd ~/.vim/bundle/command-t/ruby/command-t
-"   $ ruby extconf.h
-"   $ make
-"
-Bundle 'git://git.wincent.com/command-t.git'
 
 
 filetype plugin indent on     " required for Vundle
@@ -211,11 +202,15 @@ set hidden
 set tabstop=4
 " How many columns get inserted by reindent operations
 set shiftwidth=4
+" When indenting, round to the next multiple of shiftwidth
+" (character is at position 6, indenting would move it to 8 instead
+" of 10 (6+shiftwidth))
+set shiftround
 " Insert blanks according to tabstop && shiftwidth
 set smarttab
 " Tab in insert mode indents
 set expandtab
-" well, automatic C style indentation
+" well, automatic indentation
 set autoindent
 
 " display tabs and spaces
@@ -397,34 +392,20 @@ let php_htmlInStrings=1  " Highlight HTML in strings
 " Python Mode Settings
 " ====================
 let g:pymode_run = 0          " Dont load the python run code within vim plugin
-let g:pymode_lint_write = 1   " enable code checking on every save
-let g:pymode_lint_onfly = 0   " dont run code checking on the fly
 let g:pymode_breakpoint = 0   " disable the breakpoint plugin (I have an ipdb
                               " snippet for that)
-let g:pymode_lint = 1         " Disable this lint. We'll use Syntastic.
-let g:pymode_lint_cwindow = 0 " dont autoopen the quickfix window on errors
-let g:pymode_lint_hold = 1    " hold the cursor in the window instead of
-                              "jumping to quickfix
-" I have an indent style that linters dont like it usually. (E123-E128)
+let g:pymode_lint = 0         " Disable this lint. We'll use Syntastic.
+" I have an indent style that linters dont like, usually. (E123-E128)
 " Also I don't need the semicolon warning, since that only occurs when I set
 " an ipdb breakpoint. (E702)
-let g:pymode_lint_ignore = "E127,E128,E123,E124,E702"
-let g:pymode_rope = 1  " We have YCM now (which integrated Jedi)
+let g:pymode_lint_ignore = "E127,E128,E123,E124,E702,E501"
+let g:pymode_rope = 0  " We have YCM now (which integrated Jedi)
 "
 " Jedi
 " ====
 let g:jedi#related_names_command = "<leader>e"
 
-" CommandT Options
-" ===============
-let g:CommandTMaxHeight = 15          " Maximum window height.
-let g:CommandTMatchWindowReverse = 1  " Show the top match at the bottom
-                                      " instead of top.
-                                      " I think this is better cause its always
-                                      " at a fixed position instead of jumping
-                                      " around.
-
-" CommandT respects vim's wildignore setting.
+" CtrlP respects vim's wildignore setting.
 set wildignore+=*.o,*.obj,.git,*.pyc,static/**,node_modules/**
 
 " Clojure  (via VimClojure)
