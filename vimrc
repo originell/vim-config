@@ -1,4 +1,4 @@
-""" originell vimrc
+""" My VimRC
 """
 """ If you are using MacVIM note that
 """ <leader> means \
@@ -6,140 +6,97 @@
 set nocompatible     " be iMproved
 filetype off         " required for Vundle
 
-set foldmethod=marker
-set foldlevel=99
-
-" Use ctrl+movement keys instead of ctrl+w 
-" to move between buffers
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
-
-" Swap motion repeat forwards (;) and backwards (,)
-" I find it quicker to just press , in order to repeat my last movement
-" forwards and ; to do it backwards. It's rare that I move back. FUTURE!
-noremap ; ,
-noremap , ;
-
-" Minimum window height 5 lines
-" current window always at min 30 lines
-set winheight=30
-"set winminheight=5
-
-" Make buffer resizing more sensible - thanks to
-" http://www.readncode.com/blog/resizing-vim-window-splits-like-a-boss/
-nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
-
 " Vundle
-" Brief help
-"
-" :BundleInstall  - install bundles (won't update installed)
-" :BundleInstall! - update if installed
-"
-" :Bundles foo    - search for foo
-" :Bundles! foo   - refresh cached list and search for foo
-"
-" :BundleClean    - confirm removal of unused bundles
-" :BundleClean!   - remove without confirmation
-"
-" see :h vundle for more details
-" or wiki for FAQ
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" see :h vundle for more details or wiki for FAQ
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 " Need to do this for powerline
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
-" My Bundles:
+" My Plugins:
 " ==========
 "
 " Repos on GitHub
 " ---------------
 "
 " .editorconfig support
-Bundle 'editorconfig/editorconfig-vim'
+Plugin 'editorconfig/editorconfig-vim'
 " GIT integration
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 " GIT Syntax
-Bundle 'tpope/vim-git'
+Plugin 'tpope/vim-git'
 " Python Mode <3
-Bundle 'klen/python-mode'
+Plugin 'klen/python-mode'
 " TextMate Style Snippets
-Bundle 'SirVer/ultisnips'
+Plugin 'SirVer/ultisnips'
 " Filebrowser
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 " Comments for multiple langs
-Bundle 'tomtom/tcomment_vim'
+Plugin 'tomtom/tcomment_vim'
 " Syntastic! Syntax checking for all the languages ;-)
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 " Ag (faster Ack, awesome grep)
-Bundle 'rking/ag.vim'
+Plugin 'rking/ag.vim'
 " some HTML5 stuff :)
-Bundle 'othree/html5.vim'
+Plugin 'othree/html5.vim'
 " Beautify the status line! This is awesome. Thanks indygemma!
-Bundle 'Lokaltog/powerline'
+Plugin 'Lokaltog/powerline'
 " Autoclosing brackets/paranthesis/...
-Bundle 'Raimondi/delimitMate'
-" Coffee Script
-Bundle 'kchmck/vim-coffee-script'
+Plugin 'Raimondi/delimitMate'
 " LiveScript
-Bundle 'gkz/vim-ls'
-" Jade Template Engine
-Bundle 'digitaltoad/vim-jade'
-" Awesome CSS Color Plugin
-Bundle 'skammer/vim-css-color'
+Plugin 'gkz/vim-ls'
 " CSS3 Support
-Bundle 'hail2u/vim-css3-syntax'
+Plugin 'hail2u/vim-css3-syntax'
 " SASS/SCSS
-Bundle 'tpope/vim-haml'
+Plugin 'tpope/vim-haml'
 " LESS (css)
-Bundle 'groenewege/vim-less'
-" EasyMotion
-Bundle 'Lokaltog/vim-easymotion'
+Plugin 'groenewege/vim-less'
 " Superfast auto complete
 " also contains Jedi for Python autocomplete etc.
-Bundle 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 " JS autocomplete by TernJS via YCM
-Bundle 'marijnh/tern_for_vim'
+Plugin 'marijnh/tern_for_vim'
 " Extremely awesome HTML tag highlight
-Bundle 'Valloric/MatchTagAlways'
+Plugin 'Valloric/MatchTagAlways'
 " Markdown highlight
-Bundle 'plasticboy/vim-markdown'
+Plugin 'plasticboy/vim-markdown'
 " Molokai (sublime text 2-like), for presentations
-Bundle 'tomasr/molokai'
+Plugin 'tomasr/molokai'
 " Vim surround for quick wrapping
-Bundle 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 " Quick file open and buffer open
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 " mustache and handlebars template support
-Bundle 'mustache/vim-mustache-handlebars'
+Plugin 'mustache/vim-mustache-handlebars'
 " Smarter JavaScript and HTML indentation
-Bundle 'Arkham/vim-web-indent'
+Plugin 'Arkham/vim-web-indent'
+" Go lang support
+Plugin 'fatih/vim-go'
+" JSX Support (for React)
+Plugin 'mxw/vim-jsx'
 
 " Github vim-script/ repo
 " -----------------------
 " *.log syntax
-Bundle 'syslog-syntax-file'
-" Clojure :)
-Bundle 'VimClojure'
+Plugin 'syslog-syntax-file'
+
+call vundle#end()            " required for Vundle
+filetype plugin indent on    " required for Vundle
 
 
-filetype plugin indent on     " required for Vundle
+""" ====================
+""" Plugin Settings
+""" ====================
 
 " Load matchit for advanced opening/closing matches (HTML,...)
 runtime macros/matchit.vim
 
-" disable pyflakes quickfix window
-"let g:pyflakes_use_quickfix = 0
-
 " python pep8 violations in quickfix window
 let g:pep8_map='<leader>8'
-
 
 " Powerline Fancy Font :)
 " You should really try this! See the Powerline readme.
@@ -161,13 +118,63 @@ map <leader>r :RopeRename<CR>
 " Ag plugin :) (faster Ack, so grep but with lot more awesome)
 nmap <leader>a <Esc>:Ag!
 
-" configure MakeGreen to use django manage.py test
-map <leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
+" Python Mode Settings
+" ====================
+let g:pymode_run = 0          " Dont load the python run code within vim plugin
+let g:pymode_breakpoint = 0   " disable the breakpoint plugin (I have an ipdb
+                              " snippet for that)
+let g:pymode_lint = 0         " Disable this lint. We'll use Syntastic.
+" I have an indent style that linters dont like, usually. (E123-E128)
+" Also I don't need the semicolon warning, since that only occurs when I set
+" an ipdb breakpoint. (E702)
+let g:pymode_lint_ignore = "E127,E128,E123,E124,E702,E501"
+let g:pymode_rope = 0  " We have YCM now (which integrated Jedi)
 
+" Jedi
+let g:jedi#related_names_command = "<leader>e"
+
+" YouCompleteMe should not clash with UltiSnip's key mappings
+let g:ycm_key_list_select_completion = ['<Down>']
+
+" MatchTagAlways include Django HTML Filetype
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'htmldjango.html' : 1,
+    \ 'jinja' : 1,
+    \}
+
+" Syntastic should use ESLint for JSX support
+let g:syntastic_javascript_checkers = ['eslint']
 
 """ ====================
 """ General VIM Settings
 """ ====================
+
+" CtrlP respects vim's wildignore setting.
+set wildignore+=*.o,*.obj,.git,*.pyc,static/**,node_modules/**
+
+set foldmethod=marker   " Put special characters where a line wraps
+set foldlevel=99
+
+" Use ctrl+movement keys instead of ctrl+w 
+" to move between buffers
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+" Swap motion repeat forwards (;) and backwards (,)
+" I find it quicker to just press , in order to repeat my last movement
+" forwards and ; to do it backwards. It's rare that I move back. FUTURE!
+noremap ; ,
+noremap , ;
+
+" Make buffer resizing more sensible - thanks to
+" http://www.readncode.com/blog/resizing-vim-window-splits-like-a-boss/
+nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
 
 " Syntax highlighting
 syntax on
@@ -381,45 +388,6 @@ au FileType python set foldnestmax=2
 nnoremap <s-space> za
 vnoremap <s-space> zf
 
-" Use 2 spaces for indentation in CoffeeScript and LifeScript
-autocmd FileType coffee setlocal shiftwidth=2 tabstop=2
-autocmd FileType ls setlocal shiftwidth=2 tabstop=2
-
 " PHP Stuff
 let php_sql_query=1      " Highlight SQL in strings
 let php_htmlInStrings=1  " Highlight HTML in strings
-
-" Python Mode Settings
-" ====================
-let g:pymode_run = 0          " Dont load the python run code within vim plugin
-let g:pymode_breakpoint = 0   " disable the breakpoint plugin (I have an ipdb
-                              " snippet for that)
-let g:pymode_lint = 0         " Disable this lint. We'll use Syntastic.
-" I have an indent style that linters dont like, usually. (E123-E128)
-" Also I don't need the semicolon warning, since that only occurs when I set
-" an ipdb breakpoint. (E702)
-let g:pymode_lint_ignore = "E127,E128,E123,E124,E702,E501"
-let g:pymode_rope = 0  " We have YCM now (which integrated Jedi)
-"
-" Jedi
-" ====
-let g:jedi#related_names_command = "<leader>e"
-
-" CtrlP respects vim's wildignore setting.
-set wildignore+=*.o,*.obj,.git,*.pyc,static/**,node_modules/**
-
-" Clojure  (via VimClojure)
-let vimclojure#HighlightBuiltins=1   " Highlight Clojure's builtins
-let vimclojure#ParenRainbow=1        " Rainbows :)
-
-" YouCompleteMe should not clash with UltiSnip's key mappings
-let g:ycm_key_list_select_completion = ['<Down>']
-
-" MatchTagAlways include Django HTML Filetype
-let g:mta_filetypes = {
-    \ 'html' : 1,
-    \ 'xhtml' : 1,
-    \ 'xml' : 1,
-    \ 'htmldjango.html' : 1,
-    \ 'jinja' : 1,
-    \}
