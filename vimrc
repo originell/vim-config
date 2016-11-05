@@ -57,7 +57,7 @@ Plugin 'tpope/vim-haml'
 Plugin 'groenewege/vim-less'
 " Superfast auto complete
 " also contains Jedi for Python autocomplete etc.
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 " JS autocomplete by TernJS via YCM
 Plugin 'marijnh/tern_for_vim'
 " Extremely awesome HTML tag highlight
@@ -72,12 +72,16 @@ Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
 " mustache and handlebars template support
 Plugin 'mustache/vim-mustache-handlebars'
-" Smarter JavaScript and HTML indentation
-Plugin 'Arkham/vim-web-indent'
-" Go lang support
-Plugin 'fatih/vim-go'
+" Scala lang support
+Plugin 'derekwyatt/vim-scala'
 " JSX Support (for React)
 Plugin 'mxw/vim-jsx'
+" New JavaScript Indent and Highlighter. Required for vim-jsx
+Plugin 'pangloss/vim-javascript'
+" Swift
+Plugin 'keith/swift.vim'
+" Ansible
+Plugin 'pearofducks/ansible-vim'
 
 " Github vim-script/ repo
 " -----------------------
@@ -92,6 +96,9 @@ filetype plugin indent on    " required for Vundle
 """ Plugin Settings
 """ ====================
 
+" Ignores for CtrlP
+let g:ctrlp_custom_ignore = '\v[\/]\.(DS_Storegit|hg|svn|optimized|compiled|node_modules)$'
+
 " Load matchit for advanced opening/closing matches (HTML,...)
 runtime macros/matchit.vim
 
@@ -101,10 +108,6 @@ let g:pep8_map='<leader>8'
 " Powerline Fancy Font :)
 " You should really try this! See the Powerline readme.
 let g:Powerline_symbols = 'fancy'
-
-" pydoc preview :D
-" <leader>pw opens pydoc for current module
-set completeopt=menuone,longest,preview
 
 " NERD tree
 map <leader>n :NERDTreeToggle<CR>
@@ -118,8 +121,12 @@ map <leader>r :RopeRename<CR>
 " Ag plugin :) (faster Ack, so grep but with lot more awesome)
 nmap <leader>a <Esc>:Ag!
 
+" Inline JSX Support
+let g:jsx_ext_required = 0
+
 " Python Mode Settings
 " ====================
+let g:pymode_virtualenv = 1   " Enable Virtualenv Detection for PyMode
 let g:pymode_run = 0          " Dont load the python run code within vim plugin
 let g:pymode_breakpoint = 0   " disable the breakpoint plugin (I have an ipdb
                               " snippet for that)
@@ -128,10 +135,11 @@ let g:pymode_lint = 0         " Disable this lint. We'll use Syntastic.
 " Also I don't need the semicolon warning, since that only occurs when I set
 " an ipdb breakpoint. (E702)
 let g:pymode_lint_ignore = "E127,E128,E123,E124,E702,E501"
-let g:pymode_rope = 0  " We have YCM now (which integrated Jedi)
+let g:pymode_rope = 0  " We have YCM now (which integrates Jedi)
 
 " Jedi
-let g:jedi#related_names_command = "<leader>e"
+let g:jedi#completions_enabled = 0 " Disable Jedi as YCM will use Jedi
+let g:jedi#goto_command = "<C-g>"
 
 " YouCompleteMe should not clash with UltiSnip's key mappings
 let g:ycm_key_list_select_completion = ['<Down>']
@@ -151,6 +159,9 @@ let g:syntastic_javascript_checkers = ['eslint']
 """ ====================
 """ General VIM Settings
 """ ====================
+
+"" Treat <li> and <p> tags like the block tags they are
+let g:html_indent_tags = 'li\|p'
 
 " CtrlP respects vim's wildignore setting.
 set wildignore+=*.o,*.obj,.git,*.pyc,static/**,node_modules/**
@@ -369,7 +380,7 @@ au FileType python set ft=python.django
 au FileType html set ft=htmldjango.html
 
 " JSON highlight
-autocmd BufNewFile,BufRead *.json set ft=javascript
+autocmd BufNewFile,BufRead *.json set ft=json
 
 " pip requirements.txt is OK to be highlighted as Python.
 autocmd BufNewFile,BufRead requirements.txt set ft=python
