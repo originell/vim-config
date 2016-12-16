@@ -47,14 +47,10 @@ Plugin 'othree/html5.vim'
 Plugin 'Lokaltog/powerline'
 " Autoclosing brackets/paranthesis/...
 Plugin 'Raimondi/delimitMate'
-" LiveScript
-Plugin 'gkz/vim-ls'
 " CSS3 Support
 Plugin 'hail2u/vim-css3-syntax'
 " SASS/SCSS
 Plugin 'tpope/vim-haml'
-" LESS (css)
-Plugin 'groenewege/vim-less'
 " Superfast auto complete
 " also contains Jedi for Python autocomplete etc.
 Plugin 'Valloric/YouCompleteMe'
@@ -64,24 +60,18 @@ Plugin 'marijnh/tern_for_vim'
 Plugin 'Valloric/MatchTagAlways'
 " Markdown highlight
 Plugin 'plasticboy/vim-markdown'
-" Molokai (sublime text 2-like), for presentations
-Plugin 'tomasr/molokai'
 " Vim surround for quick wrapping
 Plugin 'tpope/vim-surround'
 " Quick file open and buffer open
 Plugin 'kien/ctrlp.vim'
-" mustache and handlebars template support
-Plugin 'mustache/vim-mustache-handlebars'
-" Scala lang support
-Plugin 'derekwyatt/vim-scala'
 " JSX Support (for React)
 Plugin 'mxw/vim-jsx'
 " New JavaScript Indent and Highlighter. Required for vim-jsx
 Plugin 'pangloss/vim-javascript'
-" Swift
-Plugin 'keith/swift.vim'
 " Ansible
 Plugin 'pearofducks/ansible-vim'
+" Golang support
+Plugin 'fatih/vim-go'
 
 " Github vim-script/ repo
 " -----------------------
