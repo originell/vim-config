@@ -226,14 +226,18 @@ set expandtab
 " well, automatic indentation
 set autoindent
 
-" display tabs and spaces
-set listchars=tab:»·,trail:· 
 " show trailing spaces as a circle. turn off with 'set nolist'
 set list
+" display tabs and spaces
+set listchars=tab:»·,trail:·
+" overwrite zenburn colorscheme colors for the listchars highlight to
+" something less visible.
+autocmd ColorScheme * highlight NonText guifg=#4a4a59
+autocmd ColorScheme * highlight SpecialKey guifg=#4a4a59
 
 " Highlight inconsistencies mixing tabs and spaces
 " -- thx indygemma
-highlight BadSpacing term=standout ctermbg=cyan
+autocmd ColorScheme * highlight BadSpacing term=standout ctermbg=cyan
 augroup Spacing
     autocmd!
     " Highlight tabulators and trailing spaces (nasty bastards)
