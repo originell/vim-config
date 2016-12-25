@@ -1,57 +1,40 @@
-My VIM Adventure
-================
+# My `vim` Adventure
 
-This README contains information which I did not want to put into my VIMrc. Mainly notes on usage and installation. For everything else, go ahead and undress my `VIMrc` ;-)
+(…that has been going strong for 5 years now. Woot! I should probably do a
+thourough clean up some time.)
 
-I'm doing mainly webdevelopment with Django. Therefore Python is my favourite weapon of choice, so this config is really all about easing Python development (for now).
+I use `vim` for **everything** except for iOS Coding.
 
-CommandT
-========
+The config state always reflects my daily life. Currently the big features are:
 
-This `VIMrc` contains the famous CommandT utility, mimicking TextMate's `Go To File` functionality. In order to use it you need to compile the included C extension...
+* Lots of Python/Django Things
+* Of course 100% `git` integration
+* First class golang support (yep! :D)
+* React/JSX Support
+* Ansible Support
 
-    cd bundle/command-t/Ruby/command-t/
-    ruby extconf.rb
-    make
+There are many more (legacy) things in the config (like PHP specific settings).
+Just take a deep dive. Everything is documented in some way.
 
-That's it :-)
+## `vim` on OSX Note
 
-About make fails and VIM segfaults
---------------------------
+On OSX 10.6 (and later) you get `vim` 7.x (but 8.0+ is the freshest release)
+without Ruby and Python support which, to be perfectly honest, sucks. The most
+common and obvious way is to compile `vim` yourself. However that did throw me
+errors with Ruby not having a x86\_64 extensions even when I had the x86\_64
+version installed via `rvm`.
 
-If CommandT makes your VIM segfault, this is most likely to happen because your VIM is compiled against a different Ruby version than CommandT. I recommend using [`rvm`](https://rvm.beginrescueend.com/) (Ruby Version Manager) to install/switch to the version your VIM is compiled against and recompile CommandT.
+Anyways I then found an article by Chris Moyer about [using MacVim's `vim` 
+as _cli_ `vim`](http://blog.coredumped.org/2010/01/osx-VIM-and-Python.html).
+Inspired by that, I marched on into my journey of recompiling `vim`. However, as
+an avid user of [homebrew](https://github.com/mxcl/homebrew) - which you should
+use too - I quickly glanced at the formula for MacVim, just to find out there
+are awesome build flags.
 
-Same applies for `make` failures.
-
-python-mode
-===========
-
-This config uses klen's awesome [python-mode](https://github.com/klen/python-mode).
-
-VIM on OSX Note
-===============
-
-On OSX 10.6 you get VIM 7.2 but without Ruby and Python support which, to be
-perfectly honest, sucks. The most common and obvious way is to compile VIM
-yourself. However that did throw me errors with Ruby not having a x86\_64 
-extensions even when I had the x86\_64 version installed via `rvm`.
-
-Anyways I then found an article by Chris Moyer about [using MacVIM´s VIM 
-as _cli_ VIM](http://blog.coredumped.org/2010/01/osx-VIM-and-Python.html). Inspired by that, I marched on into my journey of recompiling VIM. However, as an avid user of [homebrew](https://github.com/mxcl/homebrew) - which you should use too - I quickly glanced at the formula for MacVim, just to find out there are awesome build flags.
-
-    def options
-    [
-        # Building custom icons fails for many users, so off by default.
-        ["--custom-icons", "Try to generate custom document icons."],
-        ["--with-cscope", "Build with Cscope support."],
-        ["--with-envycoder", "Build with Envy Code R Bold font."],
-        ["--override-system-VIM", "Override system VIM."],
-        ["--enable-clipboard", "Enable System clipboard handling in the terminal."]
-    ]
-    end
+    option "with-override-system-vim", "Override system vim"
 
 So a simple...
 
-    brew install MacVim --override-system-VIM --enable-clipboard
+    brew install MacVim --with-override-system-vim
 
 takes care of everything mentioned in the above blogpost.
