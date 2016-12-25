@@ -31,6 +31,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-git'
 " Python Mode <3
 Plugin 'klen/python-mode'
+" requirements.txt syntax highlight
+Plugin 'raimon49/requirements.txt.vim'
 " TextMate Style Snippets
 Plugin 'SirVer/ultisnips'
 " Filebrowser
@@ -380,9 +382,6 @@ au FileType html set ft=htmldjango.html
 
 " JSON highlight
 autocmd BufNewFile,BufRead *.json set ft=json
-
-" pip requirements.txt is OK to be highlighted as Python.
-autocmd BufNewFile,BufRead requirements.txt set ft=python
 
 " The Guardfile (awesome Guard project) is ruby
 autocmd BufNewFile,BufRead Guardfile set ft=ruby
