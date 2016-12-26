@@ -10,8 +10,6 @@ filetype off         " required for Vundle
 " see :h vundle for more details or wiki for FAQ
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" Need to do this for powerline
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 " let Vundle manage Vundle
 " required!
@@ -46,7 +44,7 @@ Plugin 'rking/ag.vim'
 " some HTML5 stuff :)
 Plugin 'othree/html5.vim'
 " Beautify the status line! This is awesome. Thanks indygemma!
-Plugin 'Lokaltog/powerline'
+Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 " Autoclosing brackets/paranthesis/...
 Plugin 'Raimondi/delimitMate'
 " CSS3 Support
