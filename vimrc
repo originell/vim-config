@@ -27,8 +27,6 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'tpope/vim-fugitive'
 " GIT Syntax
 Plugin 'tpope/vim-git'
-" Python Mode <3
-Plugin 'klen/python-mode'
 " requirements.txt syntax highlight
 Plugin 'raimon49/requirements.txt.vim'
 " TextMate Style Snippets
@@ -36,9 +34,11 @@ Plugin 'SirVer/ultisnips'
 " Filebrowser
 Plugin 'scrooloose/nerdtree'
 " Comments for multiple langs
-Plugin 'tomtom/tcomment_vim'
-" Syntastic! Syntax checking for all the languages ;-)
-Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter'
+" Syntax checking for all the languages ;-)
+Plugin 'w0rp/ale'
+" Syntax auto format for all the languages ;-)
+Plugin 'Chiel92/vim-autoformat'
 " Ag (faster Ack, awesome grep)
 Plugin 'rking/ag.vim'
 " some HTML5 stuff :)
@@ -54,16 +54,15 @@ Plugin 'tpope/vim-haml'
 " Superfast auto complete
 " also contains Jedi for Python autocomplete etc.
 Plugin 'Valloric/YouCompleteMe'
-" JS autocomplete by TernJS via YCM
-Plugin 'marijnh/tern_for_vim'
 " Extremely awesome HTML tag highlight
 Plugin 'Valloric/MatchTagAlways'
 " Markdown highlight
 Plugin 'plasticboy/vim-markdown'
 " Vim surround for quick wrapping
 Plugin 'tpope/vim-surround'
-" Quick file open and buffer open
-Plugin 'kien/ctrlp.vim'
+" Quick file open
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
 " JSX Support (for React)
 Plugin 'mxw/vim-jsx'
 " New JavaScript Indent and Highlighter. Required for vim-jsx
@@ -72,6 +71,25 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'pearofducks/ansible-vim'
 " Golang support
 Plugin 'fatih/vim-go'
+" Python Import Sorting
+Plugin 'fisadev/vim-isort'
+" R lang support
+Plugin 'jalvesaq/Nvim-R'
+" Solarized. Because I need a light colorscheme when I'm sitting in the sun
+Plugin 'altercation/vim-colors-solarized'
+" Ctags Overview (overview of classes and methods in a project/file)
+Plugin 'majutsushi/tagbar'
+" Terraform Support
+Plugin 'hashivim/vim-terraform'
+" Twig PHP Template Language Support
+Plugin 'hlidotbe/vim-twig'
+"" Following Plugins are taken from https://github.com/sheerun/vim-polyglot
+" Blade Support
+Plugin 'jwalton512/vim-blade'
+" New PHP Syntax (7+)
+Plugin 'StanAngeloff/php.vim'
+" Enhanced Python Syntax/Indent
+Plugin 'mitsuhiko/vim-python-combined'
 
 " Github vim-script/ repo
 " -----------------------
@@ -86,14 +104,8 @@ filetype plugin indent on    " required for Vundle
 """ Plugin Settings
 """ ====================
 
-" Ignores for CtrlP
-let g:ctrlp_custom_ignore = '\v[\/]\.(DS_Storegit|hg|svn|optimized|compiled|node_modules)$'
-
 " Load matchit for advanced opening/closing matches (HTML,...)
 runtime macros/matchit.vim
-
-" python pep8 violations in quickfix window
-let g:pep8_map='<leader>8'
 
 " Powerline Fancy Font :)
 " You should really try this! See the Powerline readme.
@@ -104,32 +116,11 @@ map <leader>n :NERDTreeToggle<CR>
 "" ignnore .pyc files
 let NERDTreeIgnore = ['\.pyc$']
 
-" Python Rope
-map <leader>j :RopeGotoDefinition<CR>
-map <leader>r :RopeRename<CR>
-
 " Ag plugin :) (faster Ack, so grep but with lot more awesome)
 nmap <leader>a <Esc>:Ag!
 
 " Inline JSX Support
 let g:jsx_ext_required = 0
-
-" Python Mode Settings
-" ====================
-let g:pymode_virtualenv = 1   " Enable Virtualenv Detection for PyMode
-let g:pymode_run = 0          " Dont load the python run code within vim plugin
-let g:pymode_breakpoint = 0   " disable the breakpoint plugin (I have an ipdb
-                              " snippet for that)
-let g:pymode_lint = 0         " Disable this lint. We'll use Syntastic.
-" I have an indent style that linters dont like, usually. (E123-E128)
-" Also I don't need the semicolon warning, since that only occurs when I set
-" an ipdb breakpoint. (E702)
-let g:pymode_lint_ignore = "E127,E128,E123,E124,E702,E501"
-let g:pymode_rope = 0  " We have YCM now (which integrates Jedi)
-
-" Jedi
-let g:jedi#completions_enabled = 0 " Disable Jedi as YCM will use Jedi
-let g:jedi#goto_command = "<C-g>"
 
 " YouCompleteMe should not clash with UltiSnip's key mappings
 let g:ycm_key_list_select_completion = ['<Down>']
@@ -143,9 +134,6 @@ let g:mta_filetypes = {
     \ 'jinja' : 1,
     \}
 
-" Syntastic should use ESLint for JSX support
-let g:syntastic_javascript_checkers = ['eslint']
-
 """ ====================
 """ General VIM Settings
 """ ====================
@@ -158,7 +146,6 @@ endif
 "" Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
-" CtrlP respects vim's wildignore setting.
 set wildignore+=*.o,*.obj,.git,*.pyc,static/**,node_modules/**
 
 set foldmethod=marker   " Put special characters where a line wraps
@@ -316,8 +303,6 @@ endif
 set t_Co=256
 set background=dark
 colorscheme zenburn
-" make molokai more sublime-like
-let g:molokai_original = 1
 
 if has("gui_running")
     " Remove toolbar
@@ -328,24 +313,6 @@ if has("gui_running")
     set guioptions-=r
     " Adobe's cool new hot Source Code Font
     set guifont=Inconsolata-dz\ for\ Powerline:h12
-endif
-
-" Powerline: fix terminal timeout when pressing ESC
-if ! has('gui_running')
-    set ttimeoutlen=10
-    augroup FastEscape
-        autocmd!
-        au InsertEnter * set timeoutlen=0
-        au InsertLeave * set timeoutlen=1000
-    augroup END
-    " Syntax coloring lines of long lines lags a lot.
-    set synmaxcol=128
-    " Fast terminal
-    set ttyfast
-    " Scroll 3 lines at a time
-    set ttyscroll=3
-    " Avoid scrolling problems
-    set lazyredraw
 endif
 
 " Highlight the current line
@@ -364,32 +331,25 @@ set wildmode=list:longest,full
 " Enable mouse support for console vim
 set mouse=a
 
-" Omni Completion
-au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-au FileType html set omnifunc=htmlcomplete#CompleteTags
-au FileType css set omnifunc=csscomplete#CompleteCSS
-au FileType python set omnifunc=pythoncomplete#Complete
-au FileType php set omnifunc=phpcomplete#CompletePHP
-
-" robhudson's django snipmate bundle includes lots of
-" snippets. If you are not working a lot with django
-" and django/jinja templates, comment the following
-" lines
-au FileType python set ft=python.django
-au FileType html set ft=htmldjango.html
-
 " JSON highlight
-autocmd BufNewFile,BufRead *.json set ft=json
+"autocmd BufNewFile,BufRead *.json set ft=json
 
-" The Guardfile (awesome Guard project) is ruby
-autocmd BufNewFile,BufRead Guardfile set ft=ruby
-
+" Python Stuff
+" ===========
 " Use indent as foldmethod in python.
 " THX to
 " http://stackoverflow.com/questions/357785/what-is-the-recommended-way-to-use-vim-folding-for-python-coding
 au FileType python set foldmethod=indent
 " Do not fold internal statements.
 au FileType python set foldnestmax=2
+" When I'm working with python and/or html files, it is usually in a django
+" project.
+au FileType python set ft=python.django
+au FileType html set ft=htmldjango.html
+" Python import sorting can be run with leader+i
+let g:vim_isort_map = '<C-i>'
+" Format code using Autoformat according to Facebook Style.
+let g:formatter_yapf_style = 'facebook'
 
 " Fold/Unfold with Shift+Space
 nnoremap <s-space> za
@@ -398,3 +358,12 @@ vnoremap <s-space> zf
 " PHP Stuff
 let php_sql_query=1      " Highlight SQL in strings
 let php_htmlInStrings=1  " Highlight HTML in strings
+
+" Tagbar mapping
+nmap <F8> :TagbarToggle<CR>
+
+" Let terraform override my vim indentation settings
+" so it's compliant to the community standards.
+let g:terraform_align=1
+" When saving a terraform file, automatically format it.
+let g:terraform_fmt_on_save=1
