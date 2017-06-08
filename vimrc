@@ -342,10 +342,13 @@ set mouse=a
 au FileType python set foldmethod=indent
 " Do not fold internal statements.
 au FileType python set foldnestmax=2
+" Python Syntax HL options
+let python_highlight_all=1
+let python_slow_sync=1
 " When I'm working with python and/or html files, it is usually in a django
 " project.
-au FileType python set ft=python.django
-au FileType html set ft=htmldjango.html
+"au FileType python set ft=python.django
+"au FileType html set ft=htmldjango.html
 " Python import sorting can be run with leader+i
 let g:vim_isort_map = '<C-i>'
 " Format code using Autoformat according to Facebook Style.
