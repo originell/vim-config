@@ -112,7 +112,23 @@ runtime macros/matchit.vim
 let g:Powerline_symbols = 'fancy'
 
 " NERD tree
-map <leader>n :NERDTreeToggle<CR>
+function! OpenOrFocusNERDTree()
+    let nerdtree_open_in_current_tab = exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
+    if nerdtree_open_in_current_tab
+        let current_buffer = bufwinnr("%")
+        let nerdtree_buffer = bufwinnr(t:NERDTreeBufName)
+        if current_buffer == nerdtree_buffer
+            :NERDTreeToggle
+        else
+            :NERDTreeFocus
+        endif
+    else
+        :NERDTreeToggle
+    endif
+endfunction
+
+map <leader>n :call OpenOrFocusNERDTree()<CR>
+map <leader>f :NERDTreeFind<CR>
 "" ignnore .pyc files
 let NERDTreeIgnore = ['\.pyc$']
 
