@@ -1,5 +1,7 @@
 .netrwhist
 backup/
 bundle/
+plugged/
 swap/
 undo/
+autoload/

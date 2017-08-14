@@ -1,118 +1,103 @@
 """ My VimRC
-"""
-""" If you are using MacVIM note that
-""" <leader> means \
-
+" <leader> means \
 set nocompatible     " be iMproved
-filetype off         " required for Vundle
 
-" Vundle
-" see :h vundle for more details or wiki for FAQ
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 
-" let Vundle manage Vundle
-" required!
-Plugin 'VundleVim/Vundle.vim'
-
-" My Plugins:
-" ==========
-"
+""" Plugins
+" Managed by vim-plug.
+" Auto install vim-plug:
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+" 
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
 " Repos on GitHub
-" ---------------
-"
-" .editorconfig support
-Plugin 'editorconfig/editorconfig-vim'
 " GIT integration
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " GIT Syntax
-Plugin 'tpope/vim-git'
+Plug 'tpope/vim-git'
 " requirements.txt syntax highlight
-Plugin 'raimon49/requirements.txt.vim'
+Plug 'raimon49/requirements.txt.vim'
 " TextMate Style Snippets
-Plugin 'SirVer/ultisnips'
+" (disabled as I havent been using this for quite a while now.)
+"Plug 'SirVer/ultisnips'
 " Filebrowser
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 " Comments for multiple langs
-Plugin 'scrooloose/nerdcommenter'
-" Syntax checking for all the languages ;-)
-Plugin 'w0rp/ale'
-" Syntax auto format for all the languages ;-)
-Plugin 'Chiel92/vim-autoformat'
+Plug 'scrooloose/nerdcommenter'
+" Syntax checking for all the languages
+Plug 'w0rp/ale'
 " Ag (faster Ack, awesome grep)
-Plugin 'rking/ag.vim'
+Plug 'rking/ag.vim'
 " some HTML5 stuff :)
-Plugin 'othree/html5.vim'
+Plug 'othree/html5.vim'
 " Beautify the status line! This is awesome. Thanks indygemma!
-Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plug 'vim-airline/vim-airline'
 " Autoclosing brackets/paranthesis/...
-Plugin 'Raimondi/delimitMate'
+Plug 'Raimondi/delimitMate'
 " CSS3 Support
-Plugin 'hail2u/vim-css3-syntax'
-" SASS/SCSS
-Plugin 'tpope/vim-haml'
+" Also supports SCSS Syntax
+Plug 'hail2u/vim-css3-syntax'
 " Superfast auto complete
 " also contains Jedi for Python autocomplete etc.
-Plugin 'Valloric/YouCompleteMe'
-" PyEnv Support for VIM (also loaded after YCM because jedi dependency)
-Plugin 'lambdalisue/vim-pyenv'
+"Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+" Conditional re-building YCM
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.py --clang-completer --gocode-completer --tern-completer
+  endif
+endfunction
 " Extremely awesome HTML tag highlight
-Plugin 'Valloric/MatchTagAlways'
+Plug 'Valloric/MatchTagAlways'
 " Markdown highlight
-Plugin 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown'
 " Vim surround for quick wrapping
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 " Quick file open
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plugin 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 " JSX Support (for React)
-Plugin 'mxw/vim-jsx'
+Plug 'mxw/vim-jsx'
 " New JavaScript Indent and Highlighter. Required for vim-jsx
-Plugin 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
 " Ansible
-Plugin 'pearofducks/ansible-vim'
+Plug 'pearofducks/ansible-vim'
 " Golang support
-Plugin 'fatih/vim-go'
+Plug 'fatih/vim-go'
 " Python Import Sorting
-Plugin 'fisadev/vim-isort'
-" R lang support
-Plugin 'jalvesaq/Nvim-R'
+Plug 'fisadev/vim-isort'
 " Solarized. Because I need a light colorscheme when I'm sitting in the sun
-Plugin 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 " Ctags Overview (overview of classes and methods in a project/file)
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 " Terraform Support
-Plugin 'hashivim/vim-terraform'
+Plug 'hashivim/vim-terraform'
 " Twig PHP Template Language Support
-Plugin 'hlidotbe/vim-twig'
-"" Following Plugins are taken from https://github.com/sheerun/vim-polyglot
+Plug 'hlidotbe/vim-twig'
+" Following Plugins are taken from https://github.com/sheerun/vim-polyglot
 " Blade Support
-Plugin 'jwalton512/vim-blade'
+Plug 'jwalton512/vim-blade'
 " New PHP Syntax (7+)
-Plugin 'StanAngeloff/php.vim'
+Plug 'StanAngeloff/php.vim'
 " Enhanced Python Syntax/Indent
-Plugin 'mitsuhiko/vim-python-combined'
-
-" Github vim-script/ repo
-" -----------------------
+Plug 'mitsuhiko/vim-python-combined'
 " *.log syntax
-Plugin 'syslog-syntax-file'
-
-call vundle#end()            " required for Vundle
-filetype plugin indent on    " required for Vundle
+Plug 'vim-scripts/syslog-syntax-file'
+call plug#end()
 
 
-""" ====================
 """ Plugin Settings
-""" ====================
-
 " Load matchit for advanced opening/closing matches (HTML,...)
 runtime macros/matchit.vim
-
-" Powerline Fancy Font :)
-" You should really try this! See the Powerline readme.
-let g:Powerline_symbols = 'fancy'
-
 " NERD tree
 function! OpenOrFocusNERDTree()
     let nerdtree_open_in_current_tab = exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
@@ -128,21 +113,16 @@ function! OpenOrFocusNERDTree()
         :NERDTreeToggle
     endif
 endfunction
-
 map <leader>n :call OpenOrFocusNERDTree()<CR>
 map <leader>f :NERDTreeFind<CR>
-"" ignnore .pyc files
+" ignnore .pyc files
 let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
-
 " Ag plugin :) (faster Ack, so grep but with lot more awesome)
 nmap <leader>a <Esc>:Ag!
-
 " Inline JSX Support
 let g:jsx_ext_required = 0
-
 " YouCompleteMe should not clash with UltiSnip's key mappings
 let g:ycm_key_list_select_completion = ['<Down>']
-
 " MatchTagAlways include Django HTML Filetype
 let g:mta_filetypes = {
     \ 'html' : 1,
@@ -151,7 +131,6 @@ let g:mta_filetypes = {
     \ 'htmldjango.html' : 1,
     \ 'jinja' : 1,
     \}
-
 " ALE Fixers (code formatters)
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
@@ -159,44 +138,36 @@ let g:ale_fixers['javascript'] = ['prettier']
 let g:ale_fix_on_save = 1
 " Create-React-App Type prettier settings
 let g:ale_javascript_prettier_options = '--single-quote'
+" Let airline use Powerline fonts
+let g:airline_powerline_fonts = 1
 
-""" ====================
+
 """ General VIM Settings
-""" ====================
-
-"" Enable line wrapping preserving indent level (vim 8+)
+" Enable line wrapping preserving indent level (vim 8+)
 if exists("+breakindent")
     set breakindent
 endif
-
-"" Treat <li> and <p> tags like the block tags they are
+" Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
-
+" Ignore these files/directories
 set wildignore+=*.o,*.obj,.git,*.pyc,static/**,node_modules/**
-
-set foldmethod=marker   " Put special characters where a line wraps
+" Put special characters where a line wraps
+set foldmethod=marker
 set foldlevel=99
-
-" Use ctrl+movement keys instead of ctrl+w 
-" to move between buffers
+" Use ctrl+movement keys instead of ctrl+w to move between buffers
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
-
 " Swap motion repeat forwards (;) and backwards (,)
 " I find it quicker to just press , in order to repeat my last movement
 " forwards and ; to do it backwards. It's rare that I move back. FUTURE!
 noremap ; ,
 noremap , ;
-
 " Make buffer resizing more sensible - thanks to
 " http://www.readncode.com/blog/resizing-vim-window-splits-like-a-boss/
 nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
-
-" Syntax highlighting
-syntax on
 " linenumbers
 set number
 " set incremental search (search while typing)
@@ -222,8 +193,6 @@ set noshowmode
 set ruler
 " Allow changing buffers without saving
 set hidden
-
-
 " 1 Tab == 4 Spaces
 set tabstop=4
 " How many columns get inserted by reindent operations
@@ -238,7 +207,6 @@ set smarttab
 set expandtab
 " well, automatic indentation
 set autoindent
-
 " show trailing spaces as a circle. turn off with 'set nolist'
 set list
 " display tabs and spaces
@@ -247,7 +215,6 @@ set listchars=tab:»·,trail:·
 " something less visible.
 autocmd ColorScheme * highlight NonText guifg=#4a4a59
 autocmd ColorScheme * highlight SpecialKey guifg=#4a4a59
-
 " Highlight inconsistencies mixing tabs and spaces
 " -- thx indygemma
 autocmd ColorScheme * highlight BadSpacing term=standout ctermbg=cyan
@@ -258,12 +225,10 @@ augroup Spacing
     " Only highlight trailing space in tab-filled formats
     autocmd FileType help,make match BadSpacing /  *$/
 augroup END
-
 " source vimrc with <leader>s
 map <Leader>s :source $MYVIMRC<cr>
 " open up .vimrc in a vertical split with <leader>vv
 map <Leader>vv <c-w><c-v>:e $MYVIMRC<cr>
-
 " set the backup dir to declutter working directory.
 " two ending slashes means, full path to the actual filename
 " -- thanks to indygemma
@@ -276,8 +241,6 @@ set directory=~/.vim/swap//
 " Persistent undos (vim 7.3+)
 set undofile
 set undodir=~/.vim/undo//
-
-
 " Thanks to John Resig for the following 2 things:
 "
 " Tell vim to remember certain things when we exit
@@ -287,7 +250,6 @@ set undodir=~/.vim/undo//
 "   % : saves and restores the buffer list
 "   n... : where to save the viminfo files
 set viminfo='10,\"100,:20,%,n~/.viminfo
-
 " when we reload, tell vim to restore the cursor to the saved position
 augroup JumpCursorOnEdit
     au!
@@ -313,8 +275,6 @@ augroup JumpCursorOnEdit
     \ unlet b:doopenfold |
     \ endif
 augroup END
-
-
 " vim7.3+ has colorcolumn support - otherwise fake it
 "             ^-  highlight linelengths exceeding XX
 if exists('+colorcolumn')
@@ -322,14 +282,13 @@ if exists('+colorcolumn')
 else
     au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%79v.\+', -1)
 endif
-
 " Color Scheme
 " Enable 256 Color support in VIM, so we can use
 " zenburn also in console.
 set t_Co=256
 set background=dark
 colorscheme zenburn
-
+" MacVIM settings
 if has("gui_running")
     " Remove toolbar
     set guioptions-=T
@@ -340,29 +299,25 @@ if has("gui_running")
     " Adobe's cool new hot Source Code Font
     set guifont=Inconsolata-dz\ for\ Powerline:h12
 endif
-
 " Highlight the current line
 set cursorline
-
 " Vertical fill character for stuff like splits etc.
 set fillchars=vert:│
-
 " When doing :e and pressing TAB
 " this will list the contents of
 " the current directory.
 " See http://vim.wikia.com/wiki/Great_wildmode/wildmenu_and_console_mouse
 set wildmenu
 set wildmode=list:longest,full
-
 " Enable mouse support for console vim
 set mouse=a
-
 " Tagbar mapping
 nmap <F8> :TagbarToggle<CR>
+" Airline ALE support
+let g:airline#extensions#ale#enabled = 1
 
-""" ====================
+
 """ Python Settings
-""" ====================
 " Force Jedi to use pyenv python.
 "if jedi#init_python()
 "  function! s:jedi_auto_force_py_version() abort
@@ -390,22 +345,17 @@ let python_slow_sync=1
 "au FileType html set ft=htmldjango.html
 " Python import sorting can be run with leader+i
 let g:vim_isort_map = '<C-i>'
-" Format code using Autoformat according to Facebook Style.
-let g:formatter_yapf_style = 'facebook'
-
 " Fold/Unfold with Shift+Space
 nnoremap <s-space> za
 vnoremap <s-space> zf
 
-""" ====================
+
 """ PHP Settings
-""" ====================
 let php_sql_query=1      " Highlight SQL in strings
 let php_htmlInStrings=1  " Highlight HTML in strings
 
-""" ====================
+
 """ Terraform Settings
-""" ====================
 " Let terraform override my vim indentation settings
 " so it's compliant to the community standards.
 let g:terraform_align=1
