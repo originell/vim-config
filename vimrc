@@ -54,6 +54,8 @@ Plugin 'tpope/vim-haml'
 " Superfast auto complete
 " also contains Jedi for Python autocomplete etc.
 Plugin 'Valloric/YouCompleteMe'
+" PyEnv Support for VIM (also loaded after YCM because jedi dependency)
+Plugin 'lambdalisue/vim-pyenv'
 " Extremely awesome HTML tag highlight
 Plugin 'Valloric/MatchTagAlways'
 " Markdown highlight
@@ -350,8 +352,21 @@ set mouse=a
 " JSON highlight
 "autocmd BufNewFile,BufRead *.json set ft=json
 
-" Python Stuff
-" ===========
+""" ====================
+""" Python Settings
+""" ====================
+" Force Jedi to use pyenv python.
+"if jedi#init_python()
+"  function! s:jedi_auto_force_py_version() abort
+"    let major_version = pyenv#python#get_internal_major_version()
+"    call jedi#force_py_version(major_version)
+"  endfunction
+"  augroup vim-pyenv-custom-augroup
+"    autocmd! *
+"    autocmd User vim-pyenv-activate-post   call s:jedi_auto_force_py_version()
+"    autocmd User vim-pyenv-deactivate-post call s:jedi_auto_force_py_version()
+"  augroup END
+"endif
 " Use indent as foldmethod in python.
 " THX to
 " http://stackoverflow.com/questions/357785/what-is-the-recommended-way-to-use-vim-folding-for-python-coding
