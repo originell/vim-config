@@ -132,7 +132,7 @@ endfunction
 map <leader>n :call OpenOrFocusNERDTree()<CR>
 map <leader>f :NERDTreeFind<CR>
 "" ignnore .pyc files
-let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
 
 " Ag plugin :) (faster Ack, so grep but with lot more awesome)
 nmap <leader>a <Esc>:Ag!
