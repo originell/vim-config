@@ -1,6 +1,6 @@
 # My `vim` Adventure
 
-(…that has been going strong for 5 years now. Woot! I should probably do a
+(…that has been going strong for 6 years now. Woot! I should probably do a
 thourough clean up some time.)
 
 I use `vim` for **everything** except for iOS Coding.
@@ -12,9 +12,12 @@ The config state always reflects my daily life. Currently the big features are:
 * First class golang support (yep! :D)
 * React/JSX Support
 * Ansible Support
+* Blade Support
+* PHP7 Support
 
 There are many more (legacy) things in the config (like PHP specific settings).
 Just take a deep dive. Everything is documented in some way.
+
 
 ## `vim` on OSX Note
 
@@ -38,3 +41,10 @@ So a simple...
     brew install MacVim --with-override-system-vim
 
 takes care of everything mentioned in the above blogpost.
+
+
+## Python Linting in Virtualenvs
+
+You will notice that linting will not work properly in a virtualenv
+(complaining about libraries not being importable). That's a lie. To fix it,
+simply install `pylint` in your virtualenv.
