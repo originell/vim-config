@@ -357,8 +357,8 @@ set wildmode=list:longest,full
 " Enable mouse support for console vim
 set mouse=a
 
-" JSON highlight
-"autocmd BufNewFile,BufRead *.json set ft=json
+" Tagbar mapping
+nmap <F8> :TagbarToggle<CR>
 
 """ ====================
 """ Python Settings
@@ -397,13 +397,15 @@ let g:formatter_yapf_style = 'facebook'
 nnoremap <s-space> za
 vnoremap <s-space> zf
 
-" PHP Stuff
+""" ====================
+""" PHP Settings
+""" ====================
 let php_sql_query=1      " Highlight SQL in strings
 let php_htmlInStrings=1  " Highlight HTML in strings
 
-" Tagbar mapping
-nmap <F8> :TagbarToggle<CR>
-
+""" ====================
+""" Terraform Settings
+""" ====================
 " Let terraform override my vim indentation settings
 " so it's compliant to the community standards.
 let g:terraform_align=1
