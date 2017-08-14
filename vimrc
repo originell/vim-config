@@ -152,6 +152,14 @@ let g:mta_filetypes = {
     \ 'jinja' : 1,
     \}
 
+" ALE Fixers (code formatters)
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = ['prettier']
+" ALE auto format on save
+let g:ale_fix_on_save = 1
+" Create-React-App Type prettier settings
+let g:ale_javascript_prettier_options = '--single-quote'
+
 """ ====================
 """ General VIM Settings
 """ ====================
