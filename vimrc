@@ -131,11 +131,14 @@ let g:mta_filetypes = {
     \ 'htmldjango.html' : 1,
     \ 'jinja' : 1,
     \}
+" ALE Load pylint django plugin
+let g:ale_python_pylint_options = "--load-plugins pylint_django"
 " ALE Fixers (code formatters)
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
 let g:ale_fixers['css'] = ['prettier']
 let g:ale_fixers['scss'] = ['prettier']
+let g:ale_fixers['python'] = ['yapf']
 " ALE auto format on save
 let g:ale_fix_on_save = 1
 " Create-React-App Type prettier settings
