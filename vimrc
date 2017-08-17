@@ -134,10 +134,14 @@ let g:mta_filetypes = {
 " ALE Fixers (code formatters)
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_fixers['css'] = ['prettier']
+let g:ale_fixers['scss'] = ['prettier']
 " ALE auto format on save
 let g:ale_fix_on_save = 1
 " Create-React-App Type prettier settings
-let g:ale_javascript_prettier_options = '--single-quote'
+let g:ale_javascript_prettier_options = '--single-quote --tab-width 4 --no-semi --trailing-comma all'
+let g:ale_css_prettier_options = '--single-quote --tab-width 4 --no-semi --trailing-comma all'
+let g:ale_scss_prettier_options = '--single-quote --tab-width 4 --no-semi --trailing-comma all'
 " Let airline use Powerline fonts
 let g:airline_powerline_fonts = 1
 
