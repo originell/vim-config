@@ -44,9 +44,8 @@ Plug 'Raimondi/delimitMate'
 " Also supports SCSS Syntax
 Plug 'hail2u/vim-css3-syntax'
 " Superfast auto complete
-" also contains Jedi for Python autocomplete etc.
-"Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 " Conditional re-building YCM
+" also contains Jedi for Python autocomplete etc.
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
   " - name:   name of the plugin
@@ -56,6 +55,7 @@ function! BuildYCM(info)
     !./install.py --clang-completer --gocode-completer --tern-completer
   endif
 endfunction
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 " Extremely awesome HTML tag highlight
 Plug 'Valloric/MatchTagAlways'
 " Markdown highlight
@@ -136,6 +136,7 @@ let g:ale_python_pylint_options = "--load-plugins pylint_django"
 " ALE Fixers (code formatters)
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_fixers['javascript.jsx'] = ['prettier']
 let g:ale_fixers['css'] = ['prettier']
 let g:ale_fixers['scss'] = ['prettier']
 let g:ale_fixers['python'] = ['yapf']
@@ -147,6 +148,8 @@ let g:ale_css_prettier_options = '--single-quote --tab-width 4 --no-semi --trail
 let g:ale_scss_prettier_options = '--single-quote --tab-width 4 --no-semi --trailing-comma all'
 " Let airline use Powerline fonts
 let g:airline_powerline_fonts = 1
+" Map YouCompleteMe GoTo
+nnoremap <leader>d :YcmCompleter GoTo<CR>
 
 
 """ General VIM Settings

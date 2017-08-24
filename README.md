@@ -22,29 +22,24 @@ Just take a deep dive. Everything is documented in some way.
 ## `vim` on OSX Note
 
 On OSX 10.6 (and later) you get `vim` 7.x (but 8.0+ is the freshest release)
-without Ruby and Python support which, to be perfectly honest, sucks. The most
-common and obvious way is to compile `vim` yourself. However that did throw me
-errors with Ruby not having a x86\_64 extensions even when I had the x86\_64
-version installed via `rvm`.
+without Ruby and Python support which, to be perfectly honest, sucks. 
 
-Anyways I then found an article by Chris Moyer about [using MacVim's `vim` 
-as _cli_ `vim`](http://blog.coredumped.org/2010/01/osx-VIM-and-Python.html).
-Inspired by that, I marched on into my journey of recompiling `vim`. However, as
-an avid user of [homebrew](https://github.com/mxcl/homebrew) - which you should
-use too - I quickly glanced at the formula for MacVim, just to find out there
-are awesome build flags.
+Now most OSX users will install vim via Homebrew. Please don't. This `.vimrc`
+includes `YouCompleteMe` for amazing autocompletes and IDE-like features across
+several languages. Homebrew vim and macvim do crash with YCM sadly.
 
-    option "with-override-system-vim", "Override system vim"
+Simply install MacVim [from their official github
+releases](https://github.com/macvim-dev/macvim/releases). Then add this to your
+`.zshrc`/`.bashrc` to use MacVim provided binaries everywhere:
 
-So a simple...
-
-    brew install MacVim --with-override-system-vim
-
-takes care of everything mentioned in the above blogpost.
-
+```sh
+# Adds vim via MacVim
+export PATH="/Applications/MacVim.app/Contents/bin/:$PATH"
+```
 
 ## Python Linting in Virtualenvs
 
 You will notice that linting will not work properly in a virtualenv
 (complaining about libraries not being importable). That's a lie. To fix it,
-simply install `pylint` in your virtualenv.
+simply install `pylint` in your virtualenv. The same applies to autoformatting,
+which is done by `yapf`.
