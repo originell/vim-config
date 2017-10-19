@@ -17,32 +17,26 @@ endif
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 " Repos on GitHub
+" A gazillion language syntax and indent files <3
+Plug 'sheerun/vim-polyglot'
 " GIT integration
 Plug 'tpope/vim-fugitive'
 " GIT Syntax
 Plug 'tpope/vim-git'
-" requirements.txt syntax highlight
-Plug 'raimon49/requirements.txt.vim'
-" TextMate Style Snippets
-" (disabled as I havent been using this for quite a while now.)
-"Plug 'SirVer/ultisnips'
+" GIT.. well.. Gutter
+Plug 'airblade/vim-gitgutter'
 " Filebrowser
 Plug 'scrooloose/nerdtree'
 " Comments for multiple langs
 Plug 'scrooloose/nerdcommenter'
 " Syntax checking for all the languages
 Plug 'w0rp/ale'
-" Ag (faster Ack, awesome grep)
-Plug 'rking/ag.vim'
-" some HTML5 stuff :)
-Plug 'othree/html5.vim'
+" Ripgrep (faster grep with features from ag)
+Plug 'jremmen/vim-ripgrep'
 " Beautify the status line! This is awesome. Thanks indygemma!
 Plug 'vim-airline/vim-airline'
 " Autoclosing brackets/paranthesis/...
 Plug 'Raimondi/delimitMate'
-" CSS3 Support
-" Also supports SCSS Syntax
-Plug 'hail2u/vim-css3-syntax'
 " Superfast auto complete
 " Conditional re-building YCM
 " also contains Jedi for Python autocomplete etc.
@@ -58,40 +52,21 @@ endfunction
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 " Extremely awesome HTML tag highlight
 Plug 'Valloric/MatchTagAlways'
-" Markdown highlight
-Plug 'plasticboy/vim-markdown'
 " Vim surround for quick wrapping
 Plug 'tpope/vim-surround'
 " Quick file open
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" JSX Support (for React)
-Plug 'mxw/vim-jsx'
-" New JavaScript Indent and Highlighter. Required for vim-jsx
-Plug 'pangloss/vim-javascript'
-" Ansible
-Plug 'pearofducks/ansible-vim'
-" Golang support
-Plug 'fatih/vim-go'
 " Python Import Sorting
 Plug 'fisadev/vim-isort'
 " Solarized. Because I need a light colorscheme when I'm sitting in the sun
 Plug 'altercation/vim-colors-solarized'
 " Ctags Overview (overview of classes and methods in a project/file)
 Plug 'majutsushi/tagbar'
-" Terraform Support
-Plug 'hashivim/vim-terraform'
-" Twig PHP Template Language Support
-Plug 'hlidotbe/vim-twig'
 " Following Plugins are taken from https://github.com/sheerun/vim-polyglot
-" Blade Support
-Plug 'jwalton512/vim-blade'
-" New PHP Syntax (7+)
-Plug 'StanAngeloff/php.vim'
-" Enhanced Python Syntax/Indent
-Plug 'mitsuhiko/vim-python-combined'
-" *.log syntax
-Plug 'vim-scripts/syslog-syntax-file'
+" Make vimdiff more useful by highlighting the exact characters that are
+" different.
+Plug 'rickhowe/diffchar.vim'
 call plug#end()
 
 
@@ -117,8 +92,8 @@ map <leader>n :call OpenOrFocusNERDTree()<CR>
 map <leader>f :NERDTreeFind<CR>
 " ignnore .pyc files
 let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
-" Ag plugin :) (faster Ack, so grep but with lot more awesome)
-nmap <leader>a <Esc>:Ag!
+" Ripgrep plugin
+nmap <leader>a <Esc>:Rg
 " Inline JSX Support
 let g:jsx_ext_required = 0
 " YouCompleteMe should not clash with UltiSnip's key mappings
@@ -131,8 +106,6 @@ let g:mta_filetypes = {
     \ 'htmldjango.html' : 1,
     \ 'jinja' : 1,
     \}
-" ALE Load pylint django plugin
-let g:ale_python_pylint_options = "--load-plugins pylint_django"
 " ALE Fixers (code formatters)
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
@@ -146,10 +119,26 @@ let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_options = '--single-quote --tab-width 4 --no-semi --trailing-comma all'
 let g:ale_css_prettier_options = '--single-quote --tab-width 4 --no-semi --trailing-comma all'
 let g:ale_scss_prettier_options = '--single-quote --tab-width 4 --no-semi --trailing-comma all'
+" ALE
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
 " Let airline use Powerline fonts
 let g:airline_powerline_fonts = 1
 " Map YouCompleteMe GoTo
 nnoremap <leader>d :YcmCompleter GoTo<CR>
+" Map fzf (fuzzy finder)
+nmap <Leader>t :Files<CR>
+nmap <Leader>r :Tags<CR>
+nmap <Leader>b :Buffers<CR>
+" GitGutter Ripgrep
+let g:gitgutter_grep_command = 'rg --hidden --follow --glob "!.git/*"'
+" GitGutter styling to use · instead of +/-
+let g:gitgutter_sign_added = '∙'
+let g:gitgutter_sign_modified = '∙'
+let g:gitgutter_sign_removed = '∙'
+let g:gitgutter_sign_modified_removed = '∙'
 
 
 """ General VIM Settings
@@ -219,8 +208,12 @@ set expandtab
 set autoindent
 " show trailing spaces as a circle. turn off with 'set nolist'
 set list
+" Show for lines that have been wrapped, like Emacs
+set showbreak=
 " display tabs and spaces
-set listchars=tab:»·,trail:·
+set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
+" Highlight matching braces/parens/etc.
+set showmatch
 " overwrite zenburn colorscheme colors for the listchars highlight to
 " something less visible.
 autocmd ColorScheme * highlight NonText guifg=#4a4a59
@@ -311,8 +304,8 @@ if has("gui_running")
 endif
 " Highlight the current line
 set cursorline
-" Vertical fill character for stuff like splits etc.
-set fillchars=vert:│
+" Unicode chars for diffs/folds, and rely on Colors for window borders
+set fillchars=vert:\ ,stl:\ ,stlnc:\ ,fold:-,diff:┄
 " When doing :e and pressing TAB
 " this will list the contents of
 " the current directory.
@@ -321,6 +314,13 @@ set wildmenu
 set wildmode=list:longest,full
 " Enable mouse support for console vim
 set mouse=a
+"
+set formatoptions=tcqn1     " t - autowrap normal text
+                            " c - autowrap comments
+                            " q - gq formats comments
+                            " n - autowrap lists
+                            " 1 - break _before_ single-letter words
+                            " 2 - use indenting from 2nd line of para
 " Tagbar mapping
 nmap <F8> :TagbarToggle<CR>
 " Airline ALE support
